@@ -4,4 +4,6 @@
     <string name="login">LOGIN\n Plesase enter your details below</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="events">Events</string>
+    <string name="notifications">Notifications</string>
 </resources>

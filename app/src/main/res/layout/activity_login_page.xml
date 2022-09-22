@@ -95,10 +95,10 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/button_gradient"
                 android:onClick="loginBtn"
                 android:text="LOGIN"
-                android:textColor="@color/black"
-                android:background="@drawable/button_gradient"/>
+                android:textColor="@color/black" />
 
         </RelativeLayout>
 
