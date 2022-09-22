@@ -12,26 +12,27 @@
 
     <TextView
         android:id="@+id/textView_sign_up_form"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Registration"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/textView_sign_up_form_details"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please enter your details"
         android:layout_below="@+id/textView_sign_up_form"
         android:layout_alignParentStart="true"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"/>
+        android:gravity="center"
+        android:text="Please enter your details" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -57,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/textView_already_account"
