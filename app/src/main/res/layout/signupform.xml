@@ -16,13 +16,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:text="Registration"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="@color/black"
-        android:gravity="center"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView_sign_up_form_details"
@@ -30,8 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_sign_up_form"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="30dp"
-        android:gravity="center"
+        android:layout_marginStart="25dp"
         android:text="Please enter your details" />
 
     <androidx.cardview.widget.CardView

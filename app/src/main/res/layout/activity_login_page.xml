@@ -21,23 +21,32 @@
         app:srcCompat="@drawable/login" />
 
     <TextView
-        android:id="@+id/login_q"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_img"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="35dp"
         android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center_horizontal"
-        android:text="@string/login"
+        android:text="Login"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/login_below"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+        android:text="Please enter your details"
+        android:layout_marginLeft="25dp"/>
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/login_q"
+        android:layout_below="@id/login_below"
         android:layout_centerInParent="true"
         android:layout_marginTop="25dp"
         app:cardCornerRadius="10dp"
