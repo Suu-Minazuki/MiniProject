@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Admission Year"
-                    android:textSize="16sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
 
@@ -38,14 +38,15 @@
                     android:ems="25"
                     android:hint="yyyy"
                     android:inputType="text"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="-4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:text="Phone"
-                    android:textSize="16sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
 
@@ -54,12 +55,13 @@
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="975+"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:layout_marginLeft="-4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:text="Course"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -71,14 +73,15 @@
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="BE in Information Technology"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:layout_marginLeft="-4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="8dp"
                     android:text="Job Title"
-                    android:textSize="16sp"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
 
@@ -87,7 +90,8 @@
                     android:layout_height="wrap_content"
                     android:ems="25"
                     android:hint="UI/UX Designer"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:layout_marginLeft="-4dp"/>
 
 
             </LinearLayout>
@@ -95,7 +99,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center">
 
                 <TextView
