@@ -38,6 +38,7 @@
                     android:ems="25"
                     android:hint="yyyy"
                     android:inputType="text"
+                    android:textSize="16sp"
                     android:textColor="@color/black"
                     android:layout_marginLeft="-4dp"/>
 
@@ -56,6 +57,7 @@
                     android:ems="25"
                     android:hint="975+"
                     android:inputType="text"
+                    android:textSize="16sp"
                     android:layout_marginLeft="-4dp"/>
 
                 <TextView
@@ -74,6 +76,7 @@
                     android:ems="25"
                     android:hint="BE in Information Technology"
                     android:inputType="text"
+                    android:textSize="16sp"
                     android:layout_marginLeft="-4dp"/>
 
                 <TextView
@@ -91,6 +94,7 @@
                     android:ems="25"
                     android:hint="UI/UX Designer"
                     android:inputType="text"
+                    android:textSize="16sp"
                     android:layout_marginLeft="-4dp"/>
 
 
