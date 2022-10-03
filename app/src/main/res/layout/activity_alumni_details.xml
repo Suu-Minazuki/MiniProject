@@ -16,7 +16,8 @@
             android:id="@+id/first_view"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:background="#00FF00" />
+            android:background="#00FF00"
+            />
 
         <View
             android:layout_width="200dp"
@@ -39,15 +40,14 @@
             android:background="@drawable/alumni_details_profile_imageview" />
 
         <TextView
+            android:id="@+id/alumni_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:id="@+id/alumni_name"
-            android:gravity="center"
             android:layout_below="@id/second_view"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:text="Alumni name"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/alumni_dept"
@@ -84,20 +84,23 @@
                 android:id="@+id/who_am_I"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Who am I?"
-                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/who_am_I"
+                android:layout_marginTop="10dp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem
 ipsum dolor sit amet, consectetur adipiscing elit."
                 android:textColor="@color/black"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:layout_marginBottom="10dp"/>
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -117,6 +120,7 @@ ipsum dolor sit amet, consectetur adipiscing elit."
                 android:id="@+id/contact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Contact"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -126,6 +130,7 @@ ipsum dolor sit amet, consectetur adipiscing elit."
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:id="@+id/social_media_LL"
                 android:layout_below="@+id/contact"
                 android:orientation="horizontal">
@@ -134,8 +139,9 @@ ipsum dolor sit amet, consectetur adipiscing elit."
                     android:id="@+id/social_media_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="icon: "
+                    android:drawableStart="@drawable/icon_linked_in"
                     android:textSize="16sp"
+                    android:layout_marginRight="10dp"
                     android:textColor="@color/black"
                     />
 
@@ -159,7 +165,8 @@ ipsum dolor sit amet, consectetur adipiscing elit."
                 android:id="@+id/mail_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="icon: "
+                android:drawableStart="@drawable/icon_mail"
+                android:layout_marginRight="10dp"
                 android:textColor="@color/black"
                 android:textSize="16sp"/>
 
@@ -170,7 +177,8 @@ ipsum dolor sit amet, consectetur adipiscing elit."
                     android:layout_below="@+id/social_media_LL"
                     android:text="dummyalumni@gmail.com"
                     android:textColor="@color/black"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp"
+                    android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
 
