@@ -26,6 +26,9 @@
             android:name=".Events"
             android:exported="false" />
         <activity
+            android:name=".EventDetails"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true" >
             <intent-filter>
