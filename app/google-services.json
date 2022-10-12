@@ -2,8 +2,9 @@
   "project_info": {
     "project_number": "168825851496",
     "project_id": "miniproject-96368",
-    "storage_bucket": "miniproject-96368.appspot.com"
+    "storage_bucket": "miniproject-96368.appspot.com",
     "project_number": "364494950618",
+    "firebase_url": "https://cte306miniproject-default-rtdb.firebaseio.com",
     "project_id": "cte306miniproject",
     "storage_bucket": "cte306miniproject.appspot.com"
   },
@@ -33,7 +34,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCM5h4uRQM-54SqwNWLQyIw1xuOMWwr8Y"
+          "current_key": "AIzaSyBCM5h4uRQM-54SqwNWLQyIw1xuOMWwr8Y",
           "current_key": "AIzaSyBMM5tvx5Ne_THp8n3fzMUmVfGVbiPBGRk"
         }
       ],

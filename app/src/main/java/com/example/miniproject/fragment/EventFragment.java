@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.miniproject.EventAdapterClass;
-import com.example.miniproject.EventDataModel;
+import com.example.miniproject.adapter.EventAdapterClass;
+import com.example.miniproject.Model.EventDataModel;
 import com.example.miniproject.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

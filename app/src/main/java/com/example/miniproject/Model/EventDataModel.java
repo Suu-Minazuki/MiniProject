@@ -1,4 +1,4 @@
-package com.example.miniproject;
+package com.example.miniproject.Model;
 
 public class EventDataModel {
     private String event_date, event_name, event_description, event_venue;

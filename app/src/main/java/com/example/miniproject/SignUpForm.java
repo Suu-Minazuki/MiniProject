@@ -9,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.miniproject.adapter.PageAdapterForRegistration;
+
 public class SignUpForm extends AppCompatActivity {
 
     private ViewPager2 view_pager_2;

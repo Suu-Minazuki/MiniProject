@@ -1,4 +1,4 @@
-package com.example.miniproject;
+package com.example.miniproject.adapter;
 
 
 import android.content.Context;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.miniproject.Model.EventDataModel;
+import com.example.miniproject.R;
 
 import java.util.ArrayList;
 
