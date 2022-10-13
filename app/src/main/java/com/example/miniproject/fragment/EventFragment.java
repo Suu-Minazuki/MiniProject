@@ -87,7 +87,7 @@ public class EventFragment extends Fragment {
         eventAdapterClass = new EventAdapterClass(getContext(), list);
         recyclerView.setAdapter(eventAdapterClass);
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
