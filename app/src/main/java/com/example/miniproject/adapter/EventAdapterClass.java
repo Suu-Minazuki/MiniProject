@@ -11,17 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.miniproject.Model.EventDataModel;
+import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.myviewholder> {
 
     Context context;
-    ArrayList<EventDataModel> list;
+    ArrayList<EventWithData> list;
 
-    public EventAdapterClass(Context context, ArrayList<EventDataModel> list) {
+    public EventAdapterClass(Context context, ArrayList<EventWithData> list) {
         this.context = context;
         this.list = list;
     }
@@ -35,12 +36,15 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
 
     @Override
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
-        EventDataModel eventDataModel = list.get(position);
+        EventWithData eventDataModel = list.get(position);
+
+        Picasso.get().load(eventDataModel.getEvent_image()).placeholder(R.drawable.ic_baseline_image_24).into(holder.event_image);
+
         holder.event_name.setText(eventDataModel.getEvent_name());
         holder.event_date.setText(eventDataModel.getEvent_date());
         holder.event_description.setText(eventDataModel.getEvent_description());
         holder.event_venue.setText(eventDataModel.getEvent_venue());
-        holder.event_image.setImageAlpha(eventDataModel.getEvent_image());
+
     }
 
     @Override

@@ -22,10 +22,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.miniproject.DAO.DAOEventWithData;
 import com.example.miniproject.Model.EventWithData;
+import com.firebase.client.DataSnapshot;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -47,17 +47,8 @@ public class EditEvent extends AppCompatActivity {
     private String eventOccursOn;
     private Uri selectedImageUri;
     private FirebaseStorage storage;
-    private StorageReference storageReference;
+    private StorageReference uploader;
 
-    FirebaseDatabase firebaseDatabase;
-
-    // creating a variable for our Database
-    // Reference for Firebase.
-    DatabaseReference databaseReference;
-
-    // creating a variable for
-    // our object class
-    EventWithData eventWithData;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,28 +77,10 @@ public class EditEvent extends AppCompatActivity {
             }
         });
 
-        // below line is used to get the
-        // instance of our FIrebase database.
-        firebaseDatabase = FirebaseDatabase.getInstance();
-
-        // below line is used to get reference for our database.
-        databaseReference = firebaseDatabase.getReference("Events");
-
-        // initializing our object
-        // class variable.
-        eventWithData = new EventWithData();
-
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // getting text from our edittext fields.
-                /*String name = ed_name.getText().toString();
-                String description = ed_description.getText().toString();
-                String venue = ed_venue.getText().toString();
-                String image = "selectedImageUri.toString()";
-                String date = eventOccursOn;
-
-                addDatatoFirebase(name, description, venue, image, date);*/
+                uploadtofirebase();
             }
         });
 
@@ -144,40 +117,40 @@ public class EditEvent extends AppCompatActivity {
             });
     private void uploadtofirebase() {
         storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
+        uploader = storage.getReference("Image1"+new Random().nextInt(50));
+
         if (selectedImageUri != null) {
 
             // Code for showing progressDialog while uploading
-            ProgressDialog progressDialog
-                    = new ProgressDialog(this);
+            ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-            // Defining the child of storageReference
-            StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
-
             // adding listeners on upload
             // or failure of image
-            ref.putFile(selectedImageUri)
+            uploader.putFile(selectedImageUri)
                     .addOnSuccessListener(
                             new OnSuccessListener<UploadTask.TaskSnapshot>() {
-
                                 @Override
-                                public void onSuccess(
-                                        UploadTask.TaskSnapshot taskSnapshot)
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
                                 {
+                                    uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            // Image uploaded successfully
+                                            // Dismiss dialog
+                                            progressDialog.dismiss();
+                                            FirebaseDatabase db=FirebaseDatabase.getInstance();
+                                            DatabaseReference root=db.getReference("Events");
 
-                                    // Image uploaded successfully
-                                    // Dismiss dialog
-                                    progressDialog.dismiss();
-                                    Toast
-                                            .makeText(EditEvent.this,
-                                                    "Image Uploaded!!",
-                                                    Toast.LENGTH_SHORT)
-                                            .show();
+                                            EventWithData eventWithData  = new EventWithData(ed_name.getText().toString(),ed_description.getText().toString(),ed_venue.getText().toString(),uri.toString(), eventOccursOn);
+                                            root.child(ed_name.getText().toString()).setValue(eventWithData);
+
+                                            Toast.makeText(EditEvent.this, "Successful", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                                 }
                             })
-
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e)
@@ -185,64 +158,21 @@ public class EditEvent extends AppCompatActivity {
 
                             // Error, Image not uploaded
                             progressDialog.dismiss();
-                            Toast
-                                    .makeText(EditEvent.this,
-                                            "Failed " + e.getMessage(),
-                                            Toast.LENGTH_SHORT)
-                                    .show();
+                            Toast.makeText(EditEvent.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     })
                     .addOnProgressListener(
                             new OnProgressListener<UploadTask.TaskSnapshot>() {
-
                                 // Progress Listener for loading
                                 // percentage on the dialog box
                                 @Override
-                                public void onProgress(
-                                        UploadTask.TaskSnapshot taskSnapshot)
+                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot)
                                 {
-                                    double progress
-                                            = (100.0
-                                            * taskSnapshot.getBytesTransferred()
-                                            / taskSnapshot.getTotalByteCount());
-                                    progressDialog.setMessage(
-                                            "Uploaded "
-                                                    + (int)progress + "%");
+                                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                    progressDialog.setMessage("Uploaded " + (int)progress + "%");
                                 }
                             });
         }
-    }
-
-    private void addDatatoFirebase(String name, String description, String venue, String image, String date) {
-        // below 3 lines of code is used to set
-        // data in our object class.
-        eventWithData.setEvent_name(name);
-        eventWithData.setEvent_description(description);
-        eventWithData.setEvent_venue(venue);
-        eventWithData.setEvent_image(image);
-        eventWithData.setEvent_date(date);
-
-        // we are use add value event listener method
-        // which is called with database reference.
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // inside the method of on Data change we are setting
-                // our object class to our database reference.
-                // data base reference will sends data to firebase.
-                databaseReference.child("2").setValue(eventWithData);
-
-                // after adding this data we are showing toast message.
-                Toast.makeText(EditEvent.this, "data added", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // if the data is not added or it is cancelled then
-                // we are displaying a failure toast message.
-                Toast.makeText(EditEvent.this, "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }

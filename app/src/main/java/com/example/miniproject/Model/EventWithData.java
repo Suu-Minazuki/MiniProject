@@ -12,6 +12,14 @@ public class EventWithData {
 
     }
 
+    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_date) {
+        this.event_name = event_name;
+        this.event_description = event_description;
+        this.event_venue = event_venue;
+        this.event_image = event_image;
+        this.event_date = event_date;
+    }
+
     public String getEvent_name() {
         return event_name;
     }

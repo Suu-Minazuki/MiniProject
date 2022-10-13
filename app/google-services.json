@@ -1,8 +1,5 @@
 {
   "project_info": {
-    "project_number": "168825851496",
-    "project_id": "miniproject-96368",
-    "storage_bucket": "miniproject-96368.appspot.com",
     "project_number": "364494950618",
     "firebase_url": "https://cte306miniproject-default-rtdb.firebaseio.com",
     "project_id": "cte306miniproject",
@@ -11,7 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:168825851496:android:c381339a06b9c704a4b5dd",
         "mobilesdk_app_id": "1:364494950618:android:d1aedcc2762725a2f5d5e3",
         "android_client_info": {
           "package_name": "com.example.miniproject"
@@ -19,7 +15,6 @@
       },
       "oauth_client": [
         {
-          "client_id": "168825851496-rvfc12sj5e0ijsbv2g8mcvlg18emc7sm.apps.googleusercontent.com",
           "client_id": "364494950618-cnuhnnbq14qfbg9urhkm43q6pr5voc1h.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -34,7 +29,6 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBCM5h4uRQM-54SqwNWLQyIw1xuOMWwr8Y",
           "current_key": "AIzaSyBMM5tvx5Ne_THp8n3fzMUmVfGVbiPBGRk"
         }
       ],
@@ -42,7 +36,6 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "168825851496-rvfc12sj5e0ijsbv2g8mcvlg18emc7sm.apps.googleusercontent.com",
               "client_id": "364494950618-2veop6ls0uutmvq0v0e6amg15vg3ctfr.apps.googleusercontent.com",
               "client_type": 3
             }
