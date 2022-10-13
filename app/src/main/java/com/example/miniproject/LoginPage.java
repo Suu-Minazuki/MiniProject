@@ -7,25 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.BreakIterator;
 
 public class LoginPage extends AppCompatActivity {
-    private FirebaseAuth mAuth;
 
     private TextView textView;
+    private EditText email_eT, password_eT;
+
+    private FirebaseDatabase db = FirebaseDatabase.getInstance();
+    private DatabaseReference root = db.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-        mAuth = FirebaseAuth.getInstance();
 
         final EditText email = findViewById(R.id.email_eT);
         final EditText password = findViewById(R.id.password_eT);
+
+        email_eT = findViewById(R.id.email_eT);
+        password_eT = findViewById(R.id.password_eT);
+
 
         textView = findViewById(R.id.textView8);
         textView.setOnClickListener(new View.OnClickListener() {
@@ -37,5 +42,7 @@ public class LoginPage extends AppCompatActivity {
     }
     public void loginBtn(View view) {
         startActivity(new Intent(getApplicationContext(), Events.class));
+        //String name = email_eT.getText().toString();
+        //root.setValue(name);
     }
 }

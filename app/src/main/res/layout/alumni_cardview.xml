@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="200dp"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_margin="10dp"
+    cardview:cardCornerRadius="15dp"
+    app:ignore="NamespaceTypo">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <View
+            android:id="@+id/first_view"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#00FF00" />
+
+        <View
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="27.5dp"
+            android:background="@drawable/alumni_details_profile" />
+
+        <View
+            android:id="@+id/second_view"
+            android:layout_width="match_parent"
+            android:layout_height="37.5dp"
+            android:layout_below="@+id/first_view" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/alumni_cardview_photo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32.5dp"
+            android:src="@mipmap/ic_launcher"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:id="@+id/alumni_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/second_view"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Alumni name"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/alumni_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alumni_name"
+            android:gravity="center"
+            android:text="Alumni Department" />
+
+        <TextView
+            android:id="@+id/alumni_batch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alumni_department"
+            android:gravity="center"
+            android:text="Class of blank year" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
