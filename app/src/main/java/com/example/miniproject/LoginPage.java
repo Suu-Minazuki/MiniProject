@@ -12,8 +12,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class LoginPage extends AppCompatActivity {
+import com.google.firebase.auth.FirebaseAuth;
 
+import java.text.BreakIterator;
+
+public class LoginPage extends AppCompatActivity {
+    private FirebaseAuth mAuth;
 
     private TextView textView;
     private EditText email_eT, password_eT;
@@ -25,6 +29,10 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+        mAuth = FirebaseAuth.getInstance();
+
+        final EditText email = findViewById(R.id.email_eT);
+        final EditText password = findViewById(R.id.password_eT);
 
         email_eT = findViewById(R.id.email_eT);
         password_eT = findViewById(R.id.password_eT);
