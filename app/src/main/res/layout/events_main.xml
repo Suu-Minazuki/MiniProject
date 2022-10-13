@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="1dp">
@@ -23,7 +24,9 @@
         android:id="@+id/view_pager_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tab_layout" />
+        android:layout_below="@+id/searchBar"
+        android:layout_above="@+id/tab_layout"
+        android:layout_marginVertical="5dp"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
