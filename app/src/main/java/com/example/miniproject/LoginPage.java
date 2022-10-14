@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,6 +29,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText loginEmail, loginPassword;
     private Button loginButton;
     private FirebaseAuth firebaseAuth;
+    public static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class LoginPage extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        
+        loggedIn();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,14 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignUpForm.class));
             }
         });
+    }
+
+    private void loggedIn() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String loggedIn = sharedPreferences.getString("name", "");
+        if (loggedIn.equals("true")){
+            startActivity(new Intent(getApplicationContext(), Events.class));
+        }
     }
 
     private void loginUserAccount() {
@@ -73,6 +85,12 @@ public class LoginPage extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
+
+                        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("name", "true");
+                        editor.apply();
+
                         Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getApplicationContext(), Events.class));
                     }
