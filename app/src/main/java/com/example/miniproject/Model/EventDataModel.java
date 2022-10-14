@@ -1,8 +1,7 @@
-package com.example.miniproject;
+package com.example.miniproject.Model;
 
 public class EventDataModel {
-    private String event_date, event_name, event_description, event_venue;
-    private int event_image;
+    private String event_date, event_name, event_description,event_image, event_venue;
 
     public String getEvent_date() {
         return event_date;
@@ -20,7 +19,7 @@ public class EventDataModel {
         return event_venue;
     }
 
-    public int getEvent_image() {
+    public String getEvent_image() {
         return event_image;
     }
 }

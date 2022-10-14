@@ -11,8 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.miniproject.EventAdapterClass;
-import com.example.miniproject.EventDataModel;
+import com.example.miniproject.Model.EventWithData;
+import com.example.miniproject.adapter.EventAdapterClass;
+import com.example.miniproject.Model.EventDataModel;
 import com.example.miniproject.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,7 +41,7 @@ public class EventFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference database;
     EventAdapterClass eventAdapterClass;
-    ArrayList<EventDataModel> list;
+    ArrayList<EventWithData> list;
 
     public EventFragment() {
         // Required empty public constructor
@@ -90,7 +91,7 @@ public class EventFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    EventDataModel eventDataModel = dataSnapshot.getValue(EventDataModel.class);
+                    EventWithData eventDataModel = dataSnapshot.getValue(EventWithData.class);
                     list.add(eventDataModel);
                 }
                 eventAdapterClass.notifyDataSetChanged();
