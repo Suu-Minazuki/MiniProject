@@ -31,13 +31,14 @@
             android:layout_height="87.5dp"
             android:layout_below="@+id/first_view" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/alumni_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="62.5dp"
-            android:background="@drawable/alumni_details_profile_imageview" />
+            android:src="@mipmap/ic_launcher_image_view"
+            />
 
         <TextView
             android:id="@+id/alumni_name"
@@ -144,7 +145,7 @@ ipsum dolor sit amet, consectetur adipiscing elit."
                 android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/mail_value"
+                    android:id="@+id/alumniEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/social_media_LL"

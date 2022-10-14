@@ -94,11 +94,7 @@ public class EditEvent extends AppCompatActivity {
         launchSomeActivity.launch(i);
     }
 
-    ActivityResultLauncher<Intent> launchSomeActivity
-            = registerForActivityResult(
-            new ActivityResultContracts
-                    .StartActivityForResult(),
-            result -> {
+    ActivityResultLauncher<Intent> launchSomeActivity = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK) {
                     Intent data = result.getData();
                     // do your operation from here....
@@ -115,6 +111,7 @@ public class EditEvent extends AppCompatActivity {
                     }
                 }
             });
+
     private void uploadtofirebase() {
         storage = FirebaseStorage.getInstance();
         uploader = storage.getReference("Image1"+new Random().nextInt(50));
