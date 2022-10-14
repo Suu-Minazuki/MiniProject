@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.miniproject.Model.AlumniDetails;
 import com.example.miniproject.Model.EventWithData;
@@ -29,10 +32,11 @@ import java.util.ArrayList;
 
 public class AlumniFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    DatabaseReference database;
-    AlumniAdapter alumniAdapter;
-    ArrayList<UserModel> aList;
+    private RecyclerView recyclerView;
+    private DatabaseReference database;
+    private AlumniAdapter alumniAdapter;
+    private ArrayList<UserModel> aList;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public AlumniFragment() {
 
@@ -44,6 +48,7 @@ public class AlumniFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_alumni, container, false);
 
+        swipeRefreshLayout = view.findViewById(R.id.pullToRefresh);
         recyclerView = view.findViewById(R.id.recycler_view);
         database = FirebaseDatabase.getInstance().getReference("User");
         recyclerView.setHasFixedSize(true);
@@ -66,6 +71,19 @@ public class AlumniFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_SHORT).show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
             }
         });
 
