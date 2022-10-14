@@ -145,7 +145,7 @@ ipsum dolor sit amet, consectetur adipiscing elit."
                 android:textSize="16sp"/>
 
                 <TextView
-                    android:id="@+id/mail_value"
+                    android:id="@+id/alumniEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/social_media_LL"

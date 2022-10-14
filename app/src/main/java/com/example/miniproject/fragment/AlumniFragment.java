@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.example.miniproject.Model.AlumniDetails;
 import com.example.miniproject.Model.EventWithData;
+import com.example.miniproject.Model.UserModel;
 import com.example.miniproject.R;
 import com.example.miniproject.adapter.AlumniAdapter;
 import com.example.miniproject.adapter.EventAdapterClass;
@@ -30,7 +31,7 @@ public class AlumniFragment extends Fragment {
     RecyclerView recyclerView;
     DatabaseReference database;
     AlumniAdapter alumniAdapter;
-    ArrayList<AlumniDetails> aList;
+    ArrayList<UserModel> aList;
 
     public AlumniFragment() {
 
@@ -43,19 +44,19 @@ public class AlumniFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_alumni, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_view);
-        database = FirebaseDatabase.getInstance().getReference("Alumni");
+        database = FirebaseDatabase.getInstance().getReference("User");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         aList = new ArrayList<>();
         alumniAdapter = new AlumniAdapter(getContext(), aList);
         recyclerView.setAdapter(alumniAdapter);
 
-        database.addListenerForSingleValueEvent(new ValueEventListener() {
+        database.child("Alumni").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    AlumniDetails alumniDetails = dataSnapshot.getValue(AlumniDetails.class);
-                    aList.add(alumniDetails);
+                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                    aList.add(userModel);
                 }
                 alumniAdapter.notifyDataSetChanged();
             }

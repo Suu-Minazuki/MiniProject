@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.miniproject.Model.AlumniDetails;
 import com.example.miniproject.Model.EventWithData;
+import com.example.miniproject.Model.UserModel;
 import com.example.miniproject.R;
 import com.squareup.picasso.Picasso;
 
@@ -22,9 +23,9 @@ import java.util.ArrayList;
 public class AlumniAdapter extends RecyclerView.Adapter<AlumniAdapter.myViewHolder> {
 
     Context context;
-    ArrayList<AlumniDetails> aList;
+    ArrayList<UserModel> aList;
 
-    public AlumniAdapter(Context context, ArrayList<AlumniDetails> aList) {
+    public AlumniAdapter(Context context, ArrayList<UserModel> aList) {
         this.context = context;
         this.aList = aList;
     }
@@ -40,22 +41,23 @@ public class AlumniAdapter extends RecyclerView.Adapter<AlumniAdapter.myViewHold
     @Override
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
 
-        AlumniDetails alumniDetails = aList.get(position);
+        UserModel userModel = aList.get(position);
 
-        Picasso.get().load(alumniDetails.getAlumniImage()).placeholder(R.drawable.ic_baseline_image_24).into(holder.alumniI);
+        Picasso.get().load(userModel.getUserImage()).placeholder(R.drawable.ic_baseline_image_24).into(holder.alumniI);
 
-        holder.alumniN.setText(alumniDetails.getAlumniName());
-        holder.alumniD.setText(alumniDetails.getAlumniDepartment());
-        holder.alumniY.setText(alumniDetails.getAlumniYear() + "");
+        holder.alumniN.setText(userModel.getUserName());
+        holder.alumniD.setText(userModel.getUserDepartment());
+        holder.alumniY.setText(userModel.getUserYear() + "");
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.miniproject.AlumniDetails.class);
-                intent.putExtra("ALUMNI_IMAGE", alumniDetails.getAlumniImage());
-                intent.putExtra("ALUMNI_NAME", alumniDetails.getAlumniName());
-                intent.putExtra("ALUMNI_DEPARTMENT", alumniDetails.getAlumniDepartment());
-                intent.putExtra("ALUMNI_YEAR", alumniDetails.getAlumniYear() + "");
+                intent.putExtra("ALUMNI_IMAGE", userModel.getUserImage());
+                intent.putExtra("ALUMNI_EMAIL", userModel.getUserEmail());
+                intent.putExtra("ALUMNI_NAME", userModel.getUserName());
+                intent.putExtra("ALUMNI_DEPARTMENT", userModel.getUserDepartment());
+                intent.putExtra("ALUMNI_YEAR", userModel.getUserYear() + "");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
@@ -71,8 +73,6 @@ public class AlumniAdapter extends RecyclerView.Adapter<AlumniAdapter.myViewHold
 
 
     public static class myViewHolder extends RecyclerView.ViewHolder {
-
-
         CardView cardView;
         TextView alumniN, alumniD, alumniY;
         ImageView alumniI;
