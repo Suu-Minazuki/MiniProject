@@ -62,7 +62,7 @@ public class LoginPage extends AppCompatActivity {
 
     private void loggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String loggedIn = sharedPreferences.getString("name", "");
+        String loggedIn = sharedPreferences.getString(loginEmail.getText().toString(), "");
         if (loggedIn.equals("true")){
             startActivity(new Intent(getApplicationContext(), Events.class));
         }
@@ -88,7 +88,7 @@ public class LoginPage extends AppCompatActivity {
 
                         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString("name", "true");
+                        editor.putString(loginEmail.getText().toString(), "true");
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
