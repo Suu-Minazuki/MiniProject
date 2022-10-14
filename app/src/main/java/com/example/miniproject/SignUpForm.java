@@ -182,7 +182,7 @@ public class SignUpForm extends AppCompatActivity {
                                     regisJob.getText().toString(),
                                     spinner.getSelectedItem().toString(),
                                     "");
-                            root.child(spinner.getSelectedItem().toString()).child(key).setValue(userModel);
+                            root.child(key).setValue(userModel);
                             Toast.makeText(SignUpForm.this, "Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), LoginPage.class));
                         }

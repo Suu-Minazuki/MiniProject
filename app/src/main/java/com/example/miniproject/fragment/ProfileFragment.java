@@ -62,7 +62,7 @@ public class ProfileFragment extends Fragment {
         String eMail = sharedPreferences.getString("email", "");
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("User");
-        Query query = databaseReference.child("Student").orderByChild("userEmail").equalTo(eMail);
+        Query query = databaseReference.orderByChild("userEmail").equalTo(eMail);
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
