@@ -35,7 +35,6 @@ public class ProfileFragment extends Fragment {
     private ImageButton editP;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private Query query;
     private String test;
 
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -57,12 +56,24 @@ public class ProfileFragment extends Fragment {
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String eMail = sharedPreferences.getString("email", "");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+        databaseReference = firebaseDatabase.getReference("User");
+        Query query = databaseReference.orderByChild("userEmail").equalTo(eMail);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         editP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(getContext(), query.toString() + "", Toast.LENGTH_SHORT).show();
             }
         });
 
