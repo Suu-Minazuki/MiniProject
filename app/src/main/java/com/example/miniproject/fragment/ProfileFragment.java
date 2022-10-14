@@ -1,6 +1,7 @@
 package com.example.miniproject.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.miniproject.LoginPage;
 import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.Model.UserModel;
 import com.example.miniproject.R;
@@ -96,7 +98,9 @@ public class ProfileFragment extends Fragment {
         logBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+                SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                sharedPreferences.edit().clear().commit();
+                startActivity(new Intent(getContext(), LoginPage.class));
             }
         });
 
