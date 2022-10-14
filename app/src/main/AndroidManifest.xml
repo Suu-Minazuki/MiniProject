@@ -16,6 +16,8 @@
         <activity
             android:name=".AlumniDetails"
             android:exported="false" />
+        <activity android:name=".EditProfile"
+            android:exported="false"/>
         <activity
             android:name=".LoginPage"
             android:exported="false" />

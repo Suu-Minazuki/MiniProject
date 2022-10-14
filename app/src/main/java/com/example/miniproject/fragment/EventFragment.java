@@ -76,7 +76,7 @@ public class EventFragment extends Fragment {
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                }, 2000);
+                }, 1500);
             }
         });
         return view;

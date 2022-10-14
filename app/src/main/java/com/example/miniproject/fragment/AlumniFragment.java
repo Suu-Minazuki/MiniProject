@@ -83,7 +83,7 @@ public class AlumniFragment extends Fragment {
                     public void run() {
                         swipeRefreshLayout.setRefreshing(false);
                     }
-                }, 2000);
+                }, 1500);
             }
         });
 

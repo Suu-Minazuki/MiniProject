@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.miniproject.EditProfile;
 import com.example.miniproject.LoginPage;
 import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.Model.UserModel;
@@ -37,7 +38,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileFragment extends Fragment {
 
     private CircleImageView profileImage;
-    private TextView profileName, profileDepartment, profileYear, profileDescription, profileEmail;
+    private TextView profileName, profileDepartment, profileYear, profileDescription, profileEmail, profileJob, profileType;
     private ImageButton editP, logBtn;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -55,6 +56,8 @@ public class ProfileFragment extends Fragment {
         profileYear = view.findViewById(R.id.profileYear);
         profileDescription = view.findViewById(R.id.profileDescription);
         profileEmail = view.findViewById(R.id.profileEmail);
+        profileType = view.findViewById(R.id.profileType);
+        profileJob = view.findViewById(R.id.profileJob);
         editP = view.findViewById(R.id.editBtn);
         logBtn = view.findViewById(R.id.logBtn);
 
@@ -79,6 +82,8 @@ public class ProfileFragment extends Fragment {
                         profileDescription.setText(userModel.getDescription());
                     }
                     profileEmail.setText(userModel.getUserEmail());
+                    profileType.setText(userModel.getUserType());
+                    profileJob.setText(userModel.getUserJob());
                 }
             }
 
@@ -92,6 +97,7 @@ public class ProfileFragment extends Fragment {
         editP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(getContext(), EditProfile.class));
             }
         });
 
@@ -101,6 +107,7 @@ public class ProfileFragment extends Fragment {
                 SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
                 sharedPreferences.edit().clear().commit();
                 startActivity(new Intent(getContext(), LoginPage.class));
+                getActivity().finish();
             }
         });
 
