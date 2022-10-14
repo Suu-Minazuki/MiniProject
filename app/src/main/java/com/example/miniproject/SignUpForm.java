@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -45,6 +46,7 @@ public class SignUpForm extends AppCompatActivity {
     private TextView textView;
     private ImageView regisImage;
     private EditText regisName, regisEmail, regisPassword, regisYear, regisDepartment, regisJob;
+    private String[] regisType = {"Alumni", "Student", "Tutor"};
     private Spinner spinner;
     private Button regisButton;
     private Uri selectedImageUri;
@@ -78,6 +80,10 @@ public class SignUpForm extends AppCompatActivity {
                 imageChooser();
             }
         });
+
+        ArrayAdapter aa = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, regisType);
+        aa.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(aa);
 
         regisButton.setOnClickListener(new View.OnClickListener() {
             @Override
