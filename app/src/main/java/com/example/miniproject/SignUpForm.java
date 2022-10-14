@@ -172,7 +172,7 @@ public class SignUpForm extends AppCompatActivity {
                             progressDialog.dismiss();
                             FirebaseDatabase db=FirebaseDatabase.getInstance();
                             DatabaseReference root=db.getReference("User");
-//                            String key = root.push().getKey();
+                            String key = root.push().getKey();
                             UserModel userModel  = new UserModel(
                                     uri.toString(),
                                     regisName.getText().toString(),
@@ -182,7 +182,7 @@ public class SignUpForm extends AppCompatActivity {
                                     regisJob.getText().toString(),
                                     spinner.getSelectedItem().toString(),
                                     "");
-                            root.child(spinner.getSelectedItem().toString()).child(regisEmail.getText().toString()).setValue(userModel);
+                            root.child(spinner.getSelectedItem().toString()).child(key).setValue(userModel);
                             Toast.makeText(SignUpForm.this, "Successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), LoginPage.class));
                         }
