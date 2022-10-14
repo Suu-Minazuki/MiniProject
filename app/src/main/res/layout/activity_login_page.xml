@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="40dp"
-        app:srcCompat="@drawable/login" />
+        app:srcCompat="@drawable/login_no_bg" />
 
     <TextView
         android:id="@+id/login"

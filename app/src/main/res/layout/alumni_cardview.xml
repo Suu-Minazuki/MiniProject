@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/tools"
     android:layout_margin="10dp"
     cardview:cardCornerRadius="15dp"
-    app:ignore="NamespaceTypo">
+    app:ignore="NamespaceTypo"
+    android:id="@+id/alumniClicked">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,7 +39,7 @@
             android:layout_height="75dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32.5dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/ic_launcher_image_view_round"
             app:civ_border_width="1dp" />
 
         <TextView

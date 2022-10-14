@@ -5,10 +5,9 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/eventImage"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="@color/black"
-        />
+        android:layout_height="300dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,12 +20,13 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/eventName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
                 android:text="Name of Event"
                 android:textSize="25sp"
-                android:textStyle="bold"
-                android:layout_alignParentStart="true"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -48,6 +48,7 @@
         </RelativeLayout>
 
         <TextView
+            android:id="@+id/eventDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description"
@@ -93,6 +94,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/eventDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time"
@@ -129,6 +131,7 @@
                     android:textStyle="bold"/>
 
                 <TextView
+                    android:id="@+id/eventVenue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time"
@@ -160,7 +163,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp">
 
-        <View
+        <ImageView
+            android:id="@+id/eventOrgImage"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:background="@drawable/temporary"/>
@@ -172,6 +176,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/eventOrgName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -180,6 +185,7 @@
                 android:layout_marginBottom="5dp"/>
 
             <TextView
+                android:id="@+id/eventOrgDepartment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Course"
@@ -187,6 +193,7 @@
                 android:layout_marginBottom="5dp"/>
 
             <TextView
+                android:id="@+id/eventOrgYear"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Year"

@@ -2,15 +2,19 @@ package com.example.miniproject.adapter;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.miniproject.EventDetails;
 import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.R;
 import com.squareup.picasso.Picasso;
@@ -45,6 +49,22 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
         holder.event_description.setText(eventDataModel.getEvent_description());
         holder.event_venue.setText(eventDataModel.getEvent_venue());
 
+        holder.eventClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, EventDetails.class);
+
+                intent.putExtra("EVENT_IMAGE", eventDataModel.getEvent_image());
+                intent.putExtra("EVENT_NAME", eventDataModel.getEvent_name());
+                intent.putExtra("EVENT_DESCRIPTION", eventDataModel.getEvent_description());
+                intent.putExtra("EVENT_DATE", eventDataModel.getEvent_date());
+                intent.putExtra("EVENT_VENUE", eventDataModel.getEvent_venue());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+        });
+
     }
 
     @Override
@@ -56,10 +76,12 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
 
         TextView event_date, event_name, event_description, event_venue;
         ImageView event_image;
-
+        CardView eventClick;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
+
+            eventClick = itemView.findViewById(R.id.eventClick);
 
             event_date = itemView.findViewById(R.id.event_date);
             event_name = itemView.findViewById(R.id.event_name);
