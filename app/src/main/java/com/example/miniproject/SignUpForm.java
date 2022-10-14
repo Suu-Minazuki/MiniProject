@@ -88,8 +88,7 @@ public class SignUpForm extends AppCompatActivity {
         regisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //registerNewUser();
-                uploadtofirebase();
+                registerNewUser();
             }
         });
 
@@ -101,8 +100,7 @@ public class SignUpForm extends AppCompatActivity {
         });
     }
 
-    private void imageChooser()
-    {
+    private void imageChooser() {
         Intent i = new Intent();
         i.setType("image/*");
         i.setAction(Intent.ACTION_GET_CONTENT);
@@ -142,7 +140,7 @@ public class SignUpForm extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        //uploadtofirebase();
+                        uploadtofirebase();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -158,7 +156,6 @@ public class SignUpForm extends AppCompatActivity {
 
             // Code for showing progressDialog while uploading
             ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
             // adding listeners on upload
@@ -202,7 +199,7 @@ public class SignUpForm extends AppCompatActivity {
                 @Override
                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                     double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploaded " + (int)progress + "%");
+                    progressDialog.setMessage("Registering " + (int)progress + "%");
                 }
             });
         }
