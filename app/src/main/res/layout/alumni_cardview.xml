@@ -33,13 +33,13 @@
             android:layout_height="37.5dp"
             android:layout_below="@+id/first_view" />
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/alumni_cardview_photo"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="32.5dp"
-            android:src="@drawable/ugyenpenjor"
+            android:src="@mipmap/ic_launcher"
             app:civ_border_width="1dp" />
 
         <TextView
