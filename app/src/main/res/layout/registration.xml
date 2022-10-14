@@ -15,9 +15,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="45dp"
+        android:layout_above="@id/textView_sign_up_form_details"
+        android:layout_marginBottom="6dp"
         android:text="Registration"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -27,9 +27,10 @@
         android:id="@+id/textView_sign_up_form_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_sign_up_form"
+        android:layout_above="@+id/card_view"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="15dp"
         android:text="Please enter your details"
         android:textSize="16sp" />
 
@@ -76,63 +77,6 @@
                     android:layout_marginLeft="-4dp"
                     android:ems="25"
                     android:hint="Enter your name"
-                    android:inputType="text"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Admission Year"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:ems="25"
-                    android:hint="yyyy"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Course"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisCourse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:ems="25"
-                    android:hint="BE in Information Technology"
-                    android:inputType="text"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Job Title"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisJob"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:ems="25"
-                    android:hint="UI/UX Designer"
                     android:inputType="text"
                     android:textSize="16sp" />
 
@@ -193,49 +137,67 @@
                     android:inputType="text"
                     android:textSize="16sp" />
 
-                <RadioGroup
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:text="Batch"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/regisYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:ems="25"
+                    android:hint="yyyy"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/alumniRadioBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Course"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alumni" />
+                <EditText
+                    android:id="@+id/regisCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:ems="25"
+                    android:hint="BE in Information Technology"
+                    android:inputType="text"
+                    android:textSize="16sp" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/undergradRadioBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Job Title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Undergrad" />
+                <EditText
+                    android:id="@+id/regisJob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-4dp"
+                    android:ems="25"
+                    android:hint="UI/UX Designer"
+                    android:inputType="text"
+                    android:textSize="16sp" />
 
-                        <androidx.appcompat.widget.AppCompatRadioButton
-                            android:id="@+id/tutorRadioBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tutor" />
-
-                    </LinearLayout>
-
-                </RadioGroup>
-
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/regisButton"
@@ -263,8 +225,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp">
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/card_view">
 
         <TextView
             android:id="@+id/textView_already_account"
