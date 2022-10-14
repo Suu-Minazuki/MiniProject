@@ -88,6 +88,16 @@ public class SignUpForm extends AppCompatActivity {
         regisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Validations for input email and password
+                if (TextUtils.isEmpty(regisEmail.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please enter email!!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(regisPassword.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please enter password!!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Toast.makeText(SignUpForm.this, "Processing...", Toast.LENGTH_SHORT).show();
                 registerNewUser();
             }
         });
@@ -126,15 +136,6 @@ public class SignUpForm extends AppCompatActivity {
     });
 
     private void registerNewUser() {
-        // Validations for input email and password
-        if (TextUtils.isEmpty(regisEmail.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "Please enter email!!", Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (TextUtils.isEmpty(regisPassword.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "Please enter password!!", Toast.LENGTH_LONG).show();
-            return;
-        }
         // create new user or register new user
         firebaseAuth.createUserWithEmailAndPassword(regisEmail.getText().toString(), regisPassword.getText().toString())
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
