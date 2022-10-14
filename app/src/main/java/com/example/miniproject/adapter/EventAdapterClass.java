@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.myviewholder> {
 
     Context context;
-    ArrayList<EventWithData> list;
+    ArrayList<EventWithData> list = new ArrayList<>();
 
     public EventAdapterClass(Context context, ArrayList<EventWithData> list) {
         this.context = context;
