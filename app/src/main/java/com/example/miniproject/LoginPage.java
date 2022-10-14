@@ -3,6 +3,7 @@ package com.example.miniproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,15 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 
 public class LoginPage extends AppCompatActivity {
@@ -30,6 +26,7 @@ public class LoginPage extends AppCompatActivity {
     private Button loginButton;
     private FirebaseAuth firebaseAuth;
     public static final String SHARED_PREFS = "sharedPrefs";
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,8 @@ public class LoginPage extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Signing In...");
         loggedIn();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +60,10 @@ public class LoginPage extends AppCompatActivity {
 
     private void loggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        String loggedIn = sharedPreferences.getString(loginEmail.getText().toString(), "");
-        if (loggedIn.equals("true")){
+        String loggedIn = sharedPreferences.getString("name", "");
+        if (loggedIn.equals("rue")){
             startActivity(new Intent(getApplicationContext(), Events.class));
+            finish();
         }
     }
 
@@ -80,23 +79,27 @@ public class LoginPage extends AppCompatActivity {
             return;
         }
 
+        progressDialog.show();
         // signin existing user
         firebaseAuth.signInWithEmailAndPassword(loginEmail.getText().toString(), loginPassword.getText().toString())
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-
+                        progressDialog.dismiss();
                         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(loginEmail.getText().toString(), "true");
+                        editor.putString("name", "rue");
+                        editor.putString("email", loginEmail.getText().toString());
                         editor.apply();
 
                         Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getApplicationContext(), Events.class));
                     }
-                }).addOnFailureListener(new OnFailureListener() {
+                })
+                .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), e.getMessage() + "", Toast.LENGTH_LONG).show();
                     }
                 });
