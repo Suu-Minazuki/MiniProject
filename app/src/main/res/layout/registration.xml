@@ -171,7 +171,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-4dp"
                     android:ems="25"
-                    android:hint="BE in Information Technology"
+                    android:hint="Your Course"
                     android:inputType="text"
                     android:textSize="16sp" />
 
@@ -190,7 +190,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="-4dp"
                     android:ems="25"
-                    android:hint="UI/UX Designer"
+                    android:hint="Your Job"
                     android:inputType="text"
                     android:textSize="16sp" />
 
