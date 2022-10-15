@@ -94,6 +94,7 @@ public class LoginPage extends AppCompatActivity {
 
                         Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
                         startActivity(new Intent(getApplicationContext(), Events.class));
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

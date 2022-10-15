@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,16 +41,18 @@ import java.util.Random;
 
 public class SignUpForm extends AppCompatActivity {
 
-    private TextView textView;
+    private TextView textView, tv1, tv2, tv3;
     private ImageView regisImage;
-    private EditText regisName, regisEmail, regisPassword, regisYear, regisDepartment, regisJob;
+    private EditText regisName, regisEmail, regisPassword, regisCPass, regisYear, regisJob;
     private String[] regisType = {"Alumni", "Student", "Tutor"};
-    private Spinner spinner;
+    private String[] regisCourse = {"B.E in Information Technology", "B.E in Civil Engineering", "B.E in Electrical Engineering", ""};
+    private Spinner spinner, spinner1;
     private Button regisButton;
     private Uri selectedImageUri;
     private FirebaseAuth firebaseAuth;
     private FirebaseStorage firebaseStorage;
     private StorageReference storageReference;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,15 +60,22 @@ public class SignUpForm extends AppCompatActivity {
         setContentView(R.layout.registration);
 
         textView = findViewById(R.id.textView_sign_in);
+        tv1 = findViewById(R.id.tv1);
+        tv2 = findViewById(R.id.tv2);
+        tv3 = findViewById(R.id.tv3);
         regisImage = findViewById(R.id.regisImage);
         regisName = findViewById(R.id.regisName);
         regisEmail = findViewById(R.id.regisEmail);
         regisPassword = findViewById(R.id.regisPassword);
+        regisCPass = findViewById(R.id.regisConfirmPassword);
         regisYear = findViewById(R.id.regisYear);
-        regisDepartment = findViewById(R.id.regisCourse);
         regisJob = findViewById(R.id.regisJob);
         spinner = findViewById(R.id.spinner);
+        spinner1 = findViewById(R.id.spinner1);
         regisButton = findViewById(R.id.regisButton);
+
+        // Code for showing progressDialog while uploading
+        progressDialog = new ProgressDialog(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseStorage = FirebaseStorage.getInstance();
@@ -82,20 +92,102 @@ public class SignUpForm extends AppCompatActivity {
         aa.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(aa);
 
+        ArrayAdapter aa1 = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, regisCourse);
+        aa1.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        spinner1.setAdapter(aa1);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        tv1.setVisibility(View.VISIBLE);
+                        tv2.setVisibility(View.VISIBLE);
+                        tv3.setVisibility(View.VISIBLE);
+                        regisJob.setVisibility(View.VISIBLE);
+                        spinner1.setVisibility(View.VISIBLE);
+                        regisYear.setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
+                        tv1.setVisibility(View.VISIBLE);
+                        tv2.setVisibility(View.VISIBLE);
+                        spinner1.setVisibility(View.VISIBLE);
+                        regisYear.setVisibility(View.VISIBLE);
+                        tv3.setVisibility(View.GONE);
+                        regisJob.setVisibility(View.GONE);
+                        break;
+                    case 2:
+                        tv1.setVisibility(View.GONE);
+                        tv2.setVisibility(View.GONE);
+                        tv3.setVisibility(View.GONE);
+                        regisJob.setVisibility(View.GONE);
+                        spinner1.setVisibility(View.GONE);
+                        regisYear.setVisibility(View.GONE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         regisButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Validations for input email and password
                 if (TextUtils.isEmpty(regisEmail.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please enter email!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please enter email!", Toast.LENGTH_LONG).show();
                     return;
                 }
                 if (TextUtils.isEmpty(regisPassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please enter password!!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(SignUpForm.this, "Processing...", Toast.LENGTH_SHORT).show();
-                registerNewUser();
+                if (TextUtils.isEmpty(regisCPass.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please Confirm Password!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (!regisCPass.getText().toString().equals(regisPassword.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Password not similar!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(spinner.getSelectedItem().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please Select User Type", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                switch (spinner.getSelectedItem().toString()){
+                    case "Alumni":
+                        if (TextUtils.isEmpty(regisYear.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please enter Batch!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(spinner1.getSelectedItem().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please Choose a Course", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(regisJob.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please enter your Job Title", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        break;
+                    case "Student":
+                        if (TextUtils.isEmpty(regisYear.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please enter Batch!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(spinner1.getSelectedItem().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please Choose a Course", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        break;
+                }
+                if (selectedImageUri != null){
+                    registerNewUser();
+                }else{
+                    Toast.makeText(SignUpForm.this, "Select an Image", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -133,6 +225,7 @@ public class SignUpForm extends AppCompatActivity {
     });
 
     private void registerNewUser() {
+        progressDialog.show();
         // create new user or register new user
         firebaseAuth.createUserWithEmailAndPassword(regisEmail.getText().toString(), regisPassword.getText().toString())
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -143,64 +236,86 @@ public class SignUpForm extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
                         Toast.makeText(getApplicationContext(), e.getMessage() + "", Toast.LENGTH_LONG).show();
                     }
                 });
     }
 
     private void uploadtofirebase() {
+        storageReference.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        // Image uploaded successfully
+                        // Dismiss dialog
+                        progressDialog.dismiss();
+                        FirebaseDatabase db=FirebaseDatabase.getInstance();
+                        DatabaseReference root=db.getReference("User");
+                        String key = root.push().getKey();
 
-        if (selectedImageUri != null) {
-
-            // Code for showing progressDialog while uploading
-            ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.show();
-
-            // adding listeners on upload
-            // or failure of image
-            storageReference.putFile(selectedImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            // Image uploaded successfully
-                            // Dismiss dialog
-                            progressDialog.dismiss();
-                            FirebaseDatabase db=FirebaseDatabase.getInstance();
-                            DatabaseReference root=db.getReference("User");
-                            String key = root.push().getKey();
-                            UserModel userModel  = new UserModel(
-                                    uri.toString(),
-                                    regisName.getText().toString(),
-                                    regisEmail.getText().toString(),
-                                    regisYear.getText().toString(),
-                                    regisDepartment.getText().toString(),
-                                    regisJob.getText().toString(),
-                                    spinner.getSelectedItem().toString(),
-                                    "");
-                            root.child(key).setValue(userModel);
-                            Toast.makeText(SignUpForm.this, "Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                        switch (spinner.getSelectedItem().toString()){
+                            case "Alumni":
+                                UserModel userModel  = new UserModel(
+                                        uri.toString(),
+                                        regisName.getText().toString(),
+                                        regisEmail.getText().toString(),
+                                        regisYear.getText().toString(),
+                                        spinner1.getSelectedItem().toString(),
+                                        regisJob.getText().toString(),
+                                        spinner.getSelectedItem().toString(),
+                                        "");
+                                root.child(key).setValue(userModel);
+                                break;
+                            case "Student":
+                                UserModel userModel1  = new UserModel(
+                                        uri.toString(),
+                                        regisName.getText().toString(),
+                                        regisEmail.getText().toString(),
+                                        regisYear.getText().toString(),
+                                        spinner1.getSelectedItem().toString(),
+                                        "",
+                                        spinner.getSelectedItem().toString(),
+                                        "");
+                                root.child(key).setValue(userModel1);
+                                break;
+                            case "Tutor":
+                                    UserModel userModel2  = new UserModel(
+                                            uri.toString(),
+                                            regisName.getText().toString(),
+                                            regisEmail.getText().toString(),
+                                            "",
+                                            "",
+                                            "Lecturer",
+                                            spinner.getSelectedItem().toString(),
+                                            "");
+                                    root.child(key).setValue(userModel2);
+                                    break;
                         }
-                    });
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    // Error, Image not uploaded
-                    progressDialog.dismiss();
-                    Toast.makeText(SignUpForm.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                // Progress Listener for loading
-                // percentage on the dialog box
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                    progressDialog.setMessage("Registering " + (int)progress + "%");
-                }
-            });
-        }
+                        Toast.makeText(SignUpForm.this, "Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), LoginPage.class));
+                        finish();
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Error, Image not uploaded
+                progressDialog.dismiss();
+                Toast.makeText(SignUpForm.this, "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            // Progress Listener for loading
+            // percentage on the dialog box
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                progressDialog.setMessage("Registering " + (int)progress + "%");
+            }
+        });
+
     }
 }
