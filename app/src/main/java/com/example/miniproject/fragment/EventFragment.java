@@ -24,6 +24,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class EventFragment extends Fragment {
 
@@ -50,7 +52,29 @@ public class EventFragment extends Fragment {
         list = new ArrayList<>();
         eventAdapterClass = new EventAdapterClass(getContext(), list);
         recyclerView.setAdapter(eventAdapterClass);
+        loadEvents();
+        Collections.sort(list, EventWithData.eventByDate);
+        refreshEvents();
+        return view;
+    }
 
+    private void refreshEvents() {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_SHORT).show();
+                eventAdapterClass.notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 1500);
+            }
+        });
+    }
+
+    private void loadEvents() {
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,19 +90,5 @@ public class EventFragment extends Fragment {
 
             }
         });
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_SHORT).show();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }, 1500);
-            }
-        });
-        return view;
     }
 }

@@ -1,5 +1,7 @@
 package com.example.miniproject.Model;
 
+import java.util.Comparator;
+
 public class EventWithData {
 
     private String event_name;
@@ -28,6 +30,13 @@ public class EventWithData {
         this.org_dept = org_dept;
         this.org_type = org_type;
     }
+
+    public static Comparator<EventWithData> eventByDate = new Comparator<EventWithData>() {
+        @Override
+        public int compare(EventWithData e1, EventWithData e2) {
+            return e1.getEvent_date().compareTo(e2.getEvent_date());
+        }
+    };
 
     public String getEvent_name() {
         return event_name;

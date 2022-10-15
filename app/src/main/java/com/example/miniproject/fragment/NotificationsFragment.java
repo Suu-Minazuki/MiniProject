@@ -79,6 +79,7 @@ public class NotificationsFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_SHORT).show();
+                notificationAdapter.notifyDataSetChanged();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

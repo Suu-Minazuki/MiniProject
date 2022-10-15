@@ -74,6 +74,7 @@ public class AlumniFragment extends Fragment {
             @Override
             public void onRefresh() {
                 Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_SHORT).show();
+                alumniAdapter.notifyDataSetChanged();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
