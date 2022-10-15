@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.miniproject.EditEvent;
 import com.example.miniproject.EditProfile;
 import com.example.miniproject.LoginPage;
 import com.example.miniproject.Model.EventWithData;
@@ -42,6 +43,7 @@ public class ProfileFragment extends Fragment {
     private ImageButton editP, logBtn;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    public String orgName, orgDept, orgType, orgImage;
     public static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -76,14 +78,23 @@ public class ProfileFragment extends Fragment {
                     profileName.setText(userModel.getUserName());
                     profileDepartment.setText(userModel.getUserDepartment());
                     profileYear.setText(userModel.getUserYear());
-                    if (userModel.getDescription() == "Description"){
-                        profileDescription.setText("No Description");
-                    }else {
-                        profileDescription.setText(userModel.getDescription());
-                    }
+                    profileDescription.setText(userModel.getDescription());
                     profileEmail.setText(userModel.getUserEmail());
                     profileType.setText(userModel.getUserType());
                     profileJob.setText(userModel.getUserJob());
+
+                    orgImage = userModel.getUserImage();
+                    orgName = userModel.getUserName();
+                    orgDept = userModel.getUserDepartment();
+                    orgType = userModel.getUserType();
+
+                    SharedPreferences sharedPreferences = getContext().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("Name", orgName);
+                    editor.putString("Department", orgDept);
+                    editor.putString("Type", orgType);
+                    editor.putString("Image", orgImage);
+                    editor.apply();
                 }
             }
 

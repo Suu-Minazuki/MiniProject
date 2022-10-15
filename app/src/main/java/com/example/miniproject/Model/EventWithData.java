@@ -7,17 +7,26 @@ public class EventWithData {
     private String event_venue;
     private String event_image;
     private String event_date;
+    private String org_Image;
+    private String org_name;
+    private String org_dept;
+    private String org_type;
+
 
     public EventWithData() {
 
     }
 
-    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_date) {
+    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_date, String org_Image, String org_name, String org_dept, String org_type) {
         this.event_name = event_name;
         this.event_description = event_description;
         this.event_venue = event_venue;
         this.event_image = event_image;
         this.event_date = event_date;
+        this.org_Image = org_Image;
+        this.org_name = org_name;
+        this.org_dept = org_dept;
+        this.org_type = org_type;
     }
 
     public String getEvent_name() {
@@ -58,5 +67,37 @@ public class EventWithData {
 
     public void setEvent_date(String event_date) {
         this.event_date = event_date;
+    }
+
+    public String getOrg_Image() {
+        return org_Image;
+    }
+
+    public void setOrg_Image(String org_Image) {
+        this.org_Image = org_Image;
+    }
+
+    public String getOrg_name() {
+        return org_name;
+    }
+
+    public void setOrg_name(String org_name) {
+        this.org_name = org_name;
+    }
+
+    public String getOrg_dept() {
+        return org_dept;
+    }
+
+    public void setOrg_dept(String org_dept) {
+        this.org_dept = org_dept;
+    }
+
+    public String getOrg_type() {
+        return org_type;
+    }
+
+    public void setOrg_type(String org_type) {
+        this.org_type = org_type;
     }
 }

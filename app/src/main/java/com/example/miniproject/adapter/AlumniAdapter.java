@@ -12,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.miniproject.Model.AlumniDetails;
-import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.Model.UserModel;
 import com.example.miniproject.R;
 import com.squareup.picasso.Picasso;

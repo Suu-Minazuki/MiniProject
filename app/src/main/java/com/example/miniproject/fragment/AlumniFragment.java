@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -15,12 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.miniproject.Model.AlumniDetails;
-import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.Model.UserModel;
 import com.example.miniproject.R;
 import com.example.miniproject.adapter.AlumniAdapter;
-import com.example.miniproject.adapter.EventAdapterClass;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,8 +45,8 @@ public class AlumniFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_alumni, container, false);
 
         swipeRefreshLayout = view.findViewById(R.id.pullToRefresh);
-        recyclerView = view.findViewById(R.id.recycler_view);
         database = FirebaseDatabase.getInstance().getReference("User");
+        recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         aList = new ArrayList<>();

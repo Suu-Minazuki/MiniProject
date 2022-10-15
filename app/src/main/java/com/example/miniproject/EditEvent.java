@@ -2,7 +2,9 @@ package com.example.miniproject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -22,18 +25,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.miniproject.DAO.DAOEventWithData;
 import com.example.miniproject.Model.EventWithData;
-import com.firebase.client.DataSnapshot;
+import com.example.miniproject.Model.UserModel;
+import com.example.miniproject.fragment.ProfileFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -44,10 +51,13 @@ public class EditEvent extends AppCompatActivity {
 
     private EditText ed_name, ed_description, ed_venue;
     private ImageView IVPreviewImage;
-    private String eventOccursOn;
+    private String eventOccursOn, org_name, org_image, org_usertype, org_dept;
+    private ImageButton cancel;
     private Uri selectedImageUri;
     private FirebaseStorage storage;
     private StorageReference uploader;
+    private String key;
+    public static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,6 +67,8 @@ public class EditEvent extends AppCompatActivity {
         ed_name = findViewById(R.id.ed_Name);
         ed_description = findViewById(R.id.ed_description);
         ed_venue = findViewById(R.id.ed_Venue);
+        IVPreviewImage = findViewById(R.id.add_image);
+        cancel = findViewById(R.id.cancel_btn);
         CalendarView calendar_view = findViewById(R.id.calender_view);
         Button submit_btn = findViewById(R.id.submit_btn);
 
@@ -69,7 +81,12 @@ public class EditEvent extends AppCompatActivity {
             }
         });
 
-        IVPreviewImage = findViewById(R.id.add_image);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        org_image = sharedPreferences.getString("Image", "");
+        org_name = sharedPreferences.getString("Name", "");
+        org_dept = sharedPreferences.getString("Department", "");
+        org_usertype = sharedPreferences.getString("Type", "");
+
         IVPreviewImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +98,13 @@ public class EditEvent extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 uploadtofirebase();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
@@ -137,11 +161,23 @@ public class EditEvent extends AppCompatActivity {
                                             // Image uploaded successfully
                                             // Dismiss dialog
                                             progressDialog.dismiss();
-                                            FirebaseDatabase db=FirebaseDatabase.getInstance();
-                                            DatabaseReference root=db.getReference("Events");
 
-                                            EventWithData eventWithData  = new EventWithData(ed_name.getText().toString(),ed_description.getText().toString(),ed_venue.getText().toString(),uri.toString(), eventOccursOn);
-                                            root.child(ed_name.getText().toString()).setValue(eventWithData);
+                                            FirebaseDatabase db = FirebaseDatabase.getInstance();
+                                            DatabaseReference root=db.getReference("Events");
+                                            key = root.push().getKey();
+
+                                            EventWithData eventWithData  = new EventWithData(
+                                                    ed_name.getText().toString(),
+                                                    ed_description.getText().toString(),
+                                                    ed_venue.getText().toString(),
+                                                    uri.toString(),
+                                                    eventOccursOn,
+                                                    org_image,
+                                                    org_name,
+                                                    org_dept,
+                                                    org_usertype
+                                            );
+                                            root.child(key).setValue(eventWithData);
 
                                             Toast.makeText(EditEvent.this, "Successful", Toast.LENGTH_SHORT).show();
                                         }
