@@ -6,4 +6,19 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="events">Events</string>
     <string name="notifications">Notifications</string>
+
+    <!--    Strings for On Boarding Screen-->
+
+    <!--    Titles-->
+    <string name="first_slide_title">WELCOME TO \n ALUMNI MANAGEMENT SYSTEM</string>
+    <string name="second_slide_title">YOUR EVENT MANAGER!!!</string>
+    <string name="third_slide_title">CONNECT</string>
+    <string name="fourth_slide_title">LET\'S START NOW</string>
+
+    <!--    Description-->\
+    <string name="first_slide_desc">A perfect place to know more about your Alumni:)</string>
+    <string name="second_slide_desc">Now you can attend or even host events with your Alumni. </string>
+    <string name="third_slide_desc">Connect with your graduated seniors and broaden your contacts</string>
+    <string name="fourth_slide_desc">The only thing that is between you and your Alumni is that button below. Click it to uncover the app\'s speciality</string>
+
 </resources>
