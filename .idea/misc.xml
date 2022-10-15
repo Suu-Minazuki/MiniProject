@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/search_view_broder.xml" value="0.1445" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/activity_alumni_details.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/activity_login_page.xml" value="0.14407866609662248" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/activity_main.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/edit_event.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/edit_profile.xml" value="0.14322359982898675" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/event_details.xml" value="0.14407866609662248" />
@@ -15,6 +17,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/fragment_profile.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/notification_layout_design.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/registration.xml" value="0.14407866609662248" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/search_result.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/uset/AndroidStudioProjects/MiniProject/app/src/main/res/drawable-v24/alumni_details_profile_imageview.xml" value="0.1605" />
         <entry key="..\:/Users/uset/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/alumni_details_profile.xml" value="0.1605" />
         <entry key="..\:/Users/uset/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/button_gradient.xml" value="0.1605" />
