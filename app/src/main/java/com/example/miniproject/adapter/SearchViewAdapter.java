@@ -1,9 +1,11 @@
 package com.example.miniproject.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -48,7 +50,19 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.my
         Picasso.get().load(userModel.getUserImage()).placeholder(R.drawable.ic_baseline_image_24).into(holder.userI);
 
         holder.userN.setText(userModel.getUserName());
-
+        holder.alumniS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, com.example.miniproject.AlumniDetails.class);
+                intent.putExtra("ALUMNI_IMAGE", userModel.getUserImage());
+                intent.putExtra("ALUMNI_EMAIL", userModel.getUserEmail());
+                intent.putExtra("ALUMNI_NAME", userModel.getUserName());
+                intent.putExtra("ALUMNI_DEPARTMENT", userModel.getUserDepartment());
+                intent.putExtra("ALUMNI_YEAR", userModel.getUserYear() + "");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -60,11 +74,13 @@ public class SearchViewAdapter extends RecyclerView.Adapter<SearchViewAdapter.my
 
         private CircleImageView userI;
         private TextView userN;
+        private RelativeLayout alumniS;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
             userI  = itemView.findViewById(R.id.userImage);
             userN = itemView.findViewById(R.id.userName);
+            alumniS = itemView.findViewById(R.id.alumniS);
         }
     }
 }
