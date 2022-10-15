@@ -58,9 +58,9 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:src="@mipmap/ic_launcher_image_view_round"
                     app:civ_border_color="@color/black"
-                    app:civ_border_width="1dp" />
+                    app:civ_border_width="1dp"
+                    android:src="@drawable/upload_photo"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,7 +68,8 @@
                     android:text="User Name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginTop="15dp"/>
 
                 <EditText
                     android:id="@+id/regisName"
@@ -115,7 +116,7 @@
                     android:layout_marginLeft="-4dp"
                     android:ems="25"
                     android:hint="Enter your password"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:textSize="16sp" />
 
                 <TextView
@@ -134,7 +135,7 @@
                     android:layout_marginLeft="-4dp"
                     android:ems="25"
                     android:hint="Confirm your password"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:textSize="16sp" />
 
                 <TextView
