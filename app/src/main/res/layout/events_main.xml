@@ -7,16 +7,18 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/searchBar"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="1dp"
+        android:elevation="3dp"
         app:cardCornerRadius="100dp">
 
         <SearchView
+            android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:elevation="20dp" />
+            android:elevation="20dp"
+            android:queryHint="Search"/>
 
     </androidx.cardview.widget.CardView>
 

@@ -21,6 +21,7 @@ public class Events extends AppCompatActivity {
     private ViewPager2 viewPager2;
     private PageAdapter pageAdapter;
     private FloatingActionButton float_btn;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class Events extends AppCompatActivity {
 
         tab_layout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager_2);
+        float_btn = findViewById(R.id.float_btn);
+        searchView = findViewById(R.id.searchView);
         pageAdapter = new PageAdapter(this);
         viewPager2.setAdapter(pageAdapter);
 
@@ -57,7 +60,6 @@ public class Events extends AppCompatActivity {
             }
         });
 
-        float_btn = findViewById(R.id.float_btn);
         float_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,14 +67,7 @@ public class Events extends AppCompatActivity {
             }
         });
 
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu,menu);
-        MenuItem menuItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Search Here");
-
+        searchView.clearFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -81,10 +76,13 @@ public class Events extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
+                filterlist();
                 return false;
             }
         });
 
-        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void filterlist() {
     }
 }
