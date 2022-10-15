@@ -226,6 +226,7 @@ public class SignUpForm extends AppCompatActivity {
 
     private void registerNewUser() {
         progressDialog.show();
+        progressDialog.setMessage("Registering 0%");
         // create new user or register new user
         firebaseAuth.createUserWithEmailAndPassword(regisEmail.getText().toString(), regisPassword.getText().toString())
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
