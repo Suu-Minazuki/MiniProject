@@ -55,6 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        app:tabPaddingStart="1dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Small">
 
         <com.google.android.material.tabs.TabItem
