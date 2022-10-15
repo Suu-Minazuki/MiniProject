@@ -32,36 +32,31 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
-        app:tabPaddingStart="1dp"
-        app:tabPaddingEnd="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="7dp"
-        app:tabMode="fixed"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Small">
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:icon="@drawable/ic_baseline_event_available_24"
             android:text="@string/events" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_baseline_notifications_24"
             android:text="@string/notifications" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_baseline_alumni_24"
             android:text="Alumni" />
 
         <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_baseline_person_24"
             android:text="Profile" />
