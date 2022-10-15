@@ -163,8 +163,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp">
 
-        <ImageView
-            android:id="@+id/eventOrgImage"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/OrgImage"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:background="@drawable/temporary"/>
@@ -176,7 +176,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/eventOrgName"
+                android:id="@+id/OrgName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
@@ -185,7 +185,7 @@
                 android:layout_marginBottom="5dp"/>
 
             <TextView
-                android:id="@+id/eventOrgDepartment"
+                android:id="@+id/OrgDepartment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Course"
@@ -193,10 +193,10 @@
                 android:layout_marginBottom="5dp"/>
 
             <TextView
-                android:id="@+id/eventOrgYear"
+                android:id="@+id/OrgType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Year"
+                android:text="User Type"
                 android:textSize="15sp"/>
 
         </LinearLayout>

@@ -59,6 +59,11 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
                 intent.putExtra("EVENT_DESCRIPTION", eventDataModel.getEvent_description());
                 intent.putExtra("EVENT_DATE", eventDataModel.getEvent_date());
                 intent.putExtra("EVENT_VENUE", eventDataModel.getEvent_venue());
+                intent.putExtra("EVENT_ORGI", eventDataModel.getOrg_Image());
+                intent.putExtra("EVENT_ORGN", eventDataModel.getOrg_name());
+                intent.putExtra("EVENT_ORGD", eventDataModel.getOrg_dept());
+                intent.putExtra("EVENT_ORGT", eventDataModel.getOrg_type());
+
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
 
