@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import android.widget.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getStarted(View view) {
+
         startActivity(new Intent(this,LoginPage.class));
     }
+
+
 }

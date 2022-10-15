@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginPage"
-    >
+    tools:context=".LoginPage">
 
     <View
         android:id="@+id/view_sign_up_form"
@@ -41,8 +40,7 @@
         android:layout_marginLeft="25dp"
         android:textSize="16sp"
         android:text="Please enter your details"
-        android:fontFamily="sans-serif"
-        />
+        android:fontFamily="sans-serif" />
 
 
     <androidx.cardview.widget.CardView
