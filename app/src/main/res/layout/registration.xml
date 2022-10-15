@@ -58,18 +58,24 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
+                    android:src="@drawable/upload_photo"
                     app:civ_border_color="@color/black"
-                    app:civ_border_width="1dp"
-                    android:src="@drawable/upload_photo"/>
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Upload Image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:text="User Name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="15dp"/>
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/regisName"
@@ -84,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="Email"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -103,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="Password"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -122,7 +128,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="Confirm Password"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -144,7 +150,8 @@
                     android:text="Batch"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginTop="10dp"/>
 
                 <EditText
                     android:id="@+id/regisYear"
@@ -160,7 +167,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:text="Course"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -179,7 +186,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:text="Job Title"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -195,10 +202,21 @@
                     android:inputType="text"
                     android:textSize="16sp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Type"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginTop="10dp"/>
+
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/regisButton"
