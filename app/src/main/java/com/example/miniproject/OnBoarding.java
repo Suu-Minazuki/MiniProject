@@ -48,7 +48,6 @@ public class OnBoarding extends AppCompatActivity {
         addDots(0);
 
         viewPager.addOnPageChangeListener(changeListener);
-
     }
 
     public void skip(View view){
@@ -79,7 +78,7 @@ public class OnBoarding extends AppCompatActivity {
         }
 
         if (dots.length > 0){
-            dots[position].setTextColor(getResources().getColor(R.color.teal_200));
+            dots[position].setTextColor(getResources().getColor(R.color.blue_dark));
         }
 
     }

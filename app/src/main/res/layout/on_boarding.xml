@@ -41,7 +41,7 @@
             android:background="@drawable/button_gradient"
             android:onClick="getStarted"
             android:text="GET STARTED ->"
-            android:textColor="@color/black"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:visibility="invisible" />
 

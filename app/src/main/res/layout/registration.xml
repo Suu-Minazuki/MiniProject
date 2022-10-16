@@ -14,14 +14,15 @@
         android:id="@+id/textView_sign_up_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/textView_sign_up_form_details"
         android:layout_alignParentLeft="true"
         android:layout_marginStart="45dp"
-        android:layout_above="@id/textView_sign_up_form_details"
         android:layout_marginBottom="6dp"
         android:text="Registration"
-        android:textColor="@color/black"
+        android:textColor="#FFFFFF"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/textView_sign_up_form_details"
@@ -32,7 +33,8 @@
         android:layout_marginStart="45dp"
         android:layout_marginBottom="15dp"
         android:text="Please enter your details"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:textColor="#cfcfcf"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -55,8 +57,8 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/regisImage"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
                     android:layout_gravity="center"
                     android:src="@drawable/upload_photo"
                     app:civ_border_color="@color/black"
@@ -227,7 +229,7 @@
                     android:background="@drawable/button_gradient"
                     android:onClick="onRegister"
                     android:text="Register"
-                    android:textColor="@color/black"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold">
 
                 </androidx.appcompat.widget.AppCompatButton>
