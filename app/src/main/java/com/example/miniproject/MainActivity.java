@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIMER = 3500;
+    private static int SPLASH_TIMER = 2500;
 
     //Variables
     ImageView splash_screen_logo;
@@ -69,6 +69,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }, SPLASH_TIMER);
-
     }
 }

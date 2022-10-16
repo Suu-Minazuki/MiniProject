@@ -15,17 +15,16 @@
         android:src="@drawable/ams_logo" />
 
     <TextView
+        android:id="@+id/splash_screen_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_screen_title"
-        android:text="WELCOME TO \n ALUMNI MANAGEMENT SYSTEM"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
         android:layout_below="@+id/splash_screen_logo"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="WELCOME TO \n ALUMNI MANAGEMENT SYSTEM"
         android:textColor="@color/black"
         android:textSize="28sp"
-        android:textStyle="bold"
-        android:fontFamily="sans-serif-smallcaps"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"

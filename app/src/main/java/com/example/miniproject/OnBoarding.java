@@ -39,7 +39,7 @@ public class OnBoarding extends AppCompatActivity {
         //Hooks
         viewPager = (ViewPager) findViewById(R.id.slider);
         dotsLayout = (LinearLayout) findViewById(R.id.dots);
-        getStartedBtn = (AppCompatButton)  findViewById(R.id.getStartedBtn);
+        getStartedBtn = (AppCompatButton) findViewById(R.id.getStartedBtn);
 
         //call Adapter
         sliderAdapter = new SliderAdapter(this);
@@ -54,6 +54,10 @@ public class OnBoarding extends AppCompatActivity {
     public void skip(View view){
         startActivity(new Intent(this, LoginPage.class));
         finish();
+    }
+
+    public void previous(View view){
+        viewPager.setCurrentItem(currentPos - 1);
     }
 
     public void next(View view){
@@ -99,7 +103,7 @@ public class OnBoarding extends AppCompatActivity {
                 getStartedBtn.setVisibility(View.INVISIBLE);
             }
             else {
-                animation = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.bottom_anim);
+                animation = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.bottom_anim_getstarted);
                 getStartedBtn.setAnimation(animation);
                 getStartedBtn.setVisibility(View.VISIBLE);
             }
@@ -110,5 +114,9 @@ public class OnBoarding extends AppCompatActivity {
 
         }
     };
-
+    public void getStarted(View view){
+        Intent intent = new Intent(OnBoarding.this, LoginPage.class);
+        startActivity(intent);
+        finish();
+    }
 }

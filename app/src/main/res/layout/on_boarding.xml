@@ -50,8 +50,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
             android:orientation="horizontal"
             android:paddingBottom="20dp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:background="#00000000"
+            android:drawableStart="@drawable/previous_slide"
+            android:drawableLeft="@drawable/previous_slide"
+            android:onClick="previous"
+            android:paddingBottom="30dp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
@@ -63,5 +75,6 @@
             android:drawableRight="@drawable/next_slide"
             android:onClick="next"
             android:paddingBottom="30dp" />
+
     </RelativeLayout>
 </RelativeLayout>
