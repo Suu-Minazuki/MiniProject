@@ -25,7 +25,10 @@
             android:id="@+id/OrgImage"
             android:layout_width="55dp"
             android:layout_height="55dp"
-            android:layout_margin="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
             android:src="@mipmap/ic_launcher_image_view_round" />
 
         <TextView

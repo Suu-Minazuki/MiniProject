@@ -304,7 +304,7 @@ public class SignUpForm extends AppCompatActivity {
                         progressDialog.dismiss();
                         FirebaseDatabase db=FirebaseDatabase.getInstance();
                         DatabaseReference root=db.getReference("User");
-                        String key = root.push().getKey();
+                        String key = root.child(spinner.getSelectedItem().toString()).push().getKey();
 
                         switch (spinner.getSelectedItem().toString()){
                             case "Alumni":
@@ -317,7 +317,7 @@ public class SignUpForm extends AppCompatActivity {
                                         regisJob.getText().toString(),
                                         spinner.getSelectedItem().toString(),
                                         "");
-                                root.child(key).setValue(userModel);
+                                root.child(spinner.getSelectedItem().toString()).child(key).setValue(userModel);
                                 break;
                             case "Student":
                                 UserModel userModel1  = new UserModel(
@@ -329,7 +329,7 @@ public class SignUpForm extends AppCompatActivity {
                                         "",
                                         spinner.getSelectedItem().toString(),
                                         "");
-                                root.child(key).setValue(userModel1);
+                                root.child(spinner.getSelectedItem().toString()).child(key).setValue(userModel1);
                                 break;
                             case "Tutor":
                                     UserModel userModel2  = new UserModel(
@@ -341,7 +341,7 @@ public class SignUpForm extends AppCompatActivity {
                                             "Lecturer",
                                             spinner.getSelectedItem().toString(),
                                             "");
-                                    root.child(key).setValue(userModel2);
+                                    root.child(spinner.getSelectedItem().toString()).child(key).setValue(userModel2);
                                     break;
                         }
                         Toast.makeText(SignUpForm.this, "Successful", Toast.LENGTH_SHORT).show();
