@@ -53,6 +53,8 @@ public class EditEvent extends AppCompatActivity {
     private Uri selectedImageUri;
     private FirebaseStorage storage;
     private StorageReference uploader;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
     private String key;
     public static final String SHARED_PREFS = "sharedPrefs";
 
@@ -86,12 +88,14 @@ public class EditEvent extends AppCompatActivity {
             }
         });
 
-        //getting data from user profile
+        //getting organizer profile
+
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         org_image = sharedPreferences.getString("Image", "");
         org_name = sharedPreferences.getString("Name", "");
         org_dept = sharedPreferences.getString("Department", "");
         org_usertype = sharedPreferences.getString("Type", "");
+
 
         IVPreviewImage.setOnClickListener(new View.OnClickListener() {
             @Override

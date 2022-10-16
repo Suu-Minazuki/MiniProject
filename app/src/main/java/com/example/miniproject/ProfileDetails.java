@@ -36,18 +36,18 @@ public class ProfileDetails extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.details_profile);
+        setContentView(R.layout.user_profile);
 
         profileImage = findViewById(R.id.profileImage);
-        profileName = findViewById(R.id.profileName);
-        profileDepartment = findViewById(R.id.profileDepartment);
-        profileYear = findViewById(R.id.profileYear);
-        profileDescription = findViewById(R.id.profileDescription);
-        profileEmail = findViewById(R.id.profileEmail);
-        profileType = findViewById(R.id.profileType);
-        profileJob = findViewById(R.id.profileJob);
-        editP = findViewById(R.id.editBtn);
-        logBtn = findViewById(R.id.logBtn);
+        profileName = findViewById(R.id.textView4);
+        //profileDepartment = findViewById(R.id.profileDepartment);
+        //profileYear = findViewById(R.id.profileYear);
+        //profileDescription = findViewById(R.id.profileDescription);
+        //profileEmail = findViewById(R.id.profileEmail);
+        profileType = findViewById(R.id.textView5);
+        //profileJob = findViewById(R.id.profileJob);
+        //editP = findViewById(R.id.editBtn);
+        //logBtn = findViewById(R.id.logBtn);
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String eMail = sharedPreferences.getString("email", "");
@@ -62,12 +62,7 @@ public class ProfileDetails extends AppCompatActivity {
                     assert userModel != null;
                     Picasso.get().load(userModel.getUserImage()).placeholder(R.drawable.ic_baseline_image_24).into(profileImage);
                     profileName.setText(userModel.getUserName());
-                    profileDepartment.setText(userModel.getUserDepartment());
-                    profileYear.setText(userModel.getUserYear());
-                    profileDescription.setText(userModel.getDescription());
-                    profileEmail.setText(userModel.getUserEmail());
                     profileType.setText(userModel.getUserType());
-                    profileJob.setText(userModel.getUserJob());
 
                     orgImage = userModel.getUserImage();
                     orgName = userModel.getUserName();
@@ -91,22 +86,23 @@ public class ProfileDetails extends AppCompatActivity {
         });
 
 
-        editP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileDetails.this, ProfileDetails.class));
-            }
-        });
-
-        logBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SharedPreferences sharedPreferences = ProfileDetails.this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-                sharedPreferences.edit().clear().commit();
-                startActivity(new Intent(ProfileDetails.this, LoginPage.class));
-                finish();
-            }
-        });
+//        editP.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                //startActivity(new Intent(ProfileDetails.this, ProfileDetails.class));
+//            }
+//        });
+//
+//        logBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SharedPreferences sharedPreferences = ProfileDetails.this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+//                sharedPreferences.edit().clear().commit();
+//                startActivity(new Intent(ProfileDetails.this, LoginPage.class));
+//                finish();
+//            }
+//        });
 
     }
 }

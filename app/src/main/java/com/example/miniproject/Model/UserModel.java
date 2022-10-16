@@ -2,13 +2,13 @@ package com.example.miniproject.Model;
 
 public class UserModel {
 
-    private String userImage, userName, userEmail, userYear, userDepartment, userJob, userType, Description;
+    private String userImage, userName, userEmail, userYear, userDepartment, userJob, userType, Description, userBImage;
 
     public UserModel(){
 
     }
 
-    public UserModel(String userImage, String userName, String userEmail, String userYear, String userDepartment, String userJob, String userType, String description) {
+    public UserModel(String userImage, String userName, String userEmail, String userYear, String userDepartment, String userJob, String userType, String description, String userBImage) {
         this.userImage = userImage;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -17,6 +17,7 @@ public class UserModel {
         this.userJob = userJob;
         this.userType = userType;
         Description = description;
+        this.userBImage = userBImage;
     }
 
     public String getUserImage() {
@@ -81,5 +82,13 @@ public class UserModel {
 
     public void setDescription(String description) {
         Description = description;
+    }
+
+    public String getUserBImage() {
+        return userBImage;
+    }
+
+    public void setUserBImage(String userBImage) {
+        this.userBImage = userBImage;
     }
 }
