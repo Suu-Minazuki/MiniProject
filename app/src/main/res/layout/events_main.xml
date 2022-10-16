@@ -83,9 +83,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#4848FF"
+        android:onClick="mainFAB"
         android:src="@drawable/ic_baseline_add_24"
-        app:borderWidth="2dp" />
+        app:borderWidth="2dp"
+        app:fabCustomSize="68dp"
+        app:maxImageSize="32dp"
+        app:tint="@color/white" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/float_btn_eve"

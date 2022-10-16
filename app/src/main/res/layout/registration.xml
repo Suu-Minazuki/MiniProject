@@ -49,7 +49,7 @@
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_marginVertical="8dp"
-                    android:src="@drawable/upload_photo"
+                    android:src="@mipmap/reg_img"
                     app:civ_border_color="@color/black"
                     app:civ_border_width="1dp" />
 
@@ -61,18 +61,12 @@
                     android:fontFamily="@font/roboto"
                     android:hint="Upload Image" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Type"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
-
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/spinner"
                     />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -118,7 +112,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="25"
-                    android:hint="Enter your password"
+                    android:hint="Enter Password"
                     android:inputType="textPassword"
                     android:textSize="14sp" />
 
@@ -134,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="25"
-                        android:hint="Confirm your password"
+                        android:hint="Confirm Password"
                         android:inputType="textPassword"
                         android:textSize="14sp" />
 
@@ -150,27 +144,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="25"
-                        android:hint="Year of Study"
+                        android:hint="Batch"
                         android:inputType="text"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Course"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/spinner"
                     android:layout_marginTop="5dp"
                     />
 
