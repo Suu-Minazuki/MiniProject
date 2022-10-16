@@ -80,12 +80,7 @@ public class SignUpForm extends AppCompatActivity {
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference("UserImage1"+new Random().nextInt(50));
 
-        regisImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                imageChooser();
-            }
-        });
+        regisImage.setOnClickListener(view -> imageChooser());
 
         ArrayAdapter aa = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, regisType);
         aa.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
@@ -125,74 +120,7 @@ public class SignUpForm extends AppCompatActivity {
             }
         });
 
-        regisButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Validations for input email and password
-                if (TextUtils.isEmpty(regisEmail.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please enter email!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(regisPassword.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(regisCPass.getText().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please Confirm Password!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (!regisCPass.getText().toString().equals(regisPassword.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Password not similar!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                if (TextUtils.isEmpty(spinner.getSelectedItem().toString())) {
-                    Toast.makeText(getApplicationContext(), "Please Select User Type", Toast.LENGTH_LONG).show();
-                    return;
-                }
-                switch (spinner.getSelectedItem().toString()){
-                    case "Alumni":
-                        if (TextUtils.isEmpty(regisYear.getText().toString())) {
-                            Toast.makeText(getApplicationContext(), "Please enter Batch!", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        if (TextUtils.isEmpty(spinner1.getSelectedItem().toString())) {
-                            Toast.makeText(getApplicationContext(), "Please Choose a Course", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        if (TextUtils.isEmpty(regisJob.getText().toString())) {
-                            Toast.makeText(getApplicationContext(), "Please enter your Job Title", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        break;
-                    case "Student":
-                        if (TextUtils.isEmpty(regisYear.getText().toString())) {
-                            Toast.makeText(getApplicationContext(), "Please enter Batch!", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        if (TextUtils.isEmpty(spinner1.getSelectedItem().toString())) {
-                            Toast.makeText(getApplicationContext(), "Please Choose a Course", Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        break;
-                }
-                if (selectedImageUri != null){
-                    registerNewUser();
-                    finish();
-                }else{
-                    Toast.makeText(SignUpForm.this, "Select an Image", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LoginPage.class));
-            }
-        });
-
         //For Spinners
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, regisType){
             @Override
             public boolean isEnabled(int position) {
@@ -251,6 +179,70 @@ public class SignUpForm extends AppCompatActivity {
 
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(adapter2);
+
+        //register button
+        regisButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Validations for input email and password
+                if (TextUtils.isEmpty(regisEmail.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please enter email!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(regisPassword.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please enter password!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(regisCPass.getText().toString())) {
+                    Toast.makeText(getApplicationContext(), "Please Confirm Password!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (!regisCPass.getText().toString().equals(regisPassword.getText().toString())){
+                    Toast.makeText(getApplicationContext(), "Password not similar!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (spinner.getSelectedItemPosition() == 0) {
+                    Toast.makeText(getApplicationContext(), "Please Select User Type", Toast.LENGTH_LONG).show();
+                }
+                switch (spinner.getSelectedItem().toString()){
+                    case "Alumni":
+                        if (TextUtils.isEmpty(regisYear.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please enter Batch!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(spinner1.getSelectedItem().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please Choose a Course", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (TextUtils.isEmpty(regisJob.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please enter your Job Title", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        break;
+                    case "Student":
+                        if (TextUtils.isEmpty(regisYear.getText().toString())) {
+                            Toast.makeText(getApplicationContext(), "Please enter Batch!", Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                        if (spinner1.getSelectedItemPosition() == 0) {
+                            Toast.makeText(getApplicationContext(), "Please Choose a Course", Toast.LENGTH_LONG).show();
+                        }
+                        break;
+                }
+                if (selectedImageUri != null){
+                    registerNewUser();
+                }else{
+                    Toast.makeText(SignUpForm.this, "Select an Image", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), LoginPage.class));
+            }
+        });
 
     }
 
