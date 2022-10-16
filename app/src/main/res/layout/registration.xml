@@ -8,7 +8,7 @@
         android:id="@+id/view_sign_up_form"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:background="@drawable/sign_view_gradient"/>
+        android:background="@drawable/sign_view_gradient" />
 
     <TextView
         android:id="@+id/textView_sign_up_form"
@@ -61,18 +61,12 @@
                     android:fontFamily="@font/roboto"
                     android:hint="Upload Image" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Type"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"/>
-
                 <Spinner
                     android:id="@+id/spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/spinner"
                     />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -157,20 +151,12 @@
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:id="@+id/tv2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Course"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
+                    android:background="@drawable/spinner"
                     android:layout_marginTop="5dp"
                     />
 
