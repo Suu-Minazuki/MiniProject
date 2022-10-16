@@ -7,8 +7,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.example.miniproject.fragment.AlumniFragment;
 import com.example.miniproject.fragment.EventFragment;
-import com.example.miniproject.fragment.NotificationsFragment;
-import com.example.miniproject.fragment.ProfileFragment;
 
 public class PageAdapter extends FragmentStateAdapter {
 
@@ -23,11 +21,7 @@ public class PageAdapter extends FragmentStateAdapter {
             case 0:
                 return new EventFragment();
             case 1:
-                return new NotificationsFragment();
-            case 2:
                 return new AlumniFragment();
-            case 3:
-                return new ProfileFragment();
             default:
                 return  new EventFragment();
         }
@@ -35,6 +29,6 @@ public class PageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 2;
     }
 }
