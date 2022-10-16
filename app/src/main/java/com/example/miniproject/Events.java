@@ -3,24 +3,19 @@ package com.example.miniproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.Model.UserModel;
-import com.example.miniproject.adapter.AlumniAdapter;
 import com.example.miniproject.adapter.PageAdapter;
 import com.example.miniproject.adapter.SearchViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,8 +28,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class Events extends AppCompatActivity {
 
@@ -49,6 +42,10 @@ public class Events extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private boolean flag;
+
+
+    //Animations
+    Animation btnAnimationMainBefore, btnAnimationMainAfter, btnAnimationEvent, btnAnimationEventAfter, btnAnimationNotification, btnAnimationNotificationAfter, btnAnimationProfile, btnAnimationProfileAfter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +62,15 @@ public class Events extends AppCompatActivity {
         pageAdapter = new PageAdapter(this);
         viewPager2.setAdapter(pageAdapter);
         searchView.clearFocus();
+
+        btnAnimationMainBefore = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
+        btnAnimationMainAfter = AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
+        btnAnimationEvent = AnimationUtils.loadAnimation(this, R.anim.fade_btn_event);
+        btnAnimationEventAfter = AnimationUtils.loadAnimation(this, R.anim.fade_btn_event_after);
+        btnAnimationNotification = AnimationUtils.loadAnimation(this, R.anim.fade_btn_notification);
+        btnAnimationNotificationAfter = AnimationUtils.loadAnimation(this, R.anim.fade_btn_notification_after);
+        btnAnimationProfile = AnimationUtils.loadAnimation(this, R.anim.fade_btn_profile);
+        btnAnimationProfileAfter = AnimationUtils.loadAnimation(this, R.anim.fade_btn_profile_after);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -172,14 +178,22 @@ public class Events extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (flag){
+                    float_btn.setAnimation(btnAnimationMainBefore);
                     float_btn_eve.setVisibility(View.VISIBLE);
+                    float_btn_eve.setAnimation(btnAnimationEvent);
                     float_btn_not.setVisibility(View.VISIBLE);
+                    float_btn_not.setAnimation(btnAnimationNotification);
                     float_btn_pro.setVisibility(View.VISIBLE);
+                    float_btn_pro.setAnimation(btnAnimationProfile);
                     flag = !flag;
                 }else {
+                    float_btn.setAnimation(btnAnimationMainAfter);
+                    float_btn_eve.setAnimation(btnAnimationEventAfter);
                     float_btn_eve.setVisibility(View.GONE);
                     float_btn_not.setVisibility(View.GONE);
+                    float_btn_not.setAnimation(btnAnimationNotificationAfter);
                     float_btn_pro.setVisibility(View.GONE);
+                    float_btn_pro.setAnimation(btnAnimationProfileAfter);
                     flag = true;
                 }
             }
