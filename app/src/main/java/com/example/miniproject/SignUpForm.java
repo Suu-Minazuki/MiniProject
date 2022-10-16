@@ -41,7 +41,7 @@ import java.util.Random;
 
 public class SignUpForm extends AppCompatActivity {
 
-    private TextView textView, tv1, tv2, tv3;
+    private TextView textView;
     private ImageView regisImage;
     private EditText regisName, regisEmail, regisPassword, regisCPass, regisYear, regisJob;
     private String[] regisType = {"Alumni", "Student", "Tutor"};
@@ -60,9 +60,6 @@ public class SignUpForm extends AppCompatActivity {
         setContentView(R.layout.registration);
 
         textView = findViewById(R.id.textView_sign_in);
-        tv1 = findViewById(R.id.tv1);
-        tv2 = findViewById(R.id.tv2);
-        tv3 = findViewById(R.id.tv3);
         regisImage = findViewById(R.id.regisImage);
         regisName = findViewById(R.id.regisName);
         regisEmail = findViewById(R.id.regisEmail);
@@ -101,25 +98,16 @@ public class SignUpForm extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0:
-                        tv1.setVisibility(View.VISIBLE);
-                        tv2.setVisibility(View.VISIBLE);
-                        tv3.setVisibility(View.VISIBLE);
                         regisJob.setVisibility(View.VISIBLE);
                         spinner1.setVisibility(View.VISIBLE);
                         regisYear.setVisibility(View.VISIBLE);
                         break;
                     case 1:
-                        tv1.setVisibility(View.VISIBLE);
-                        tv2.setVisibility(View.VISIBLE);
                         spinner1.setVisibility(View.VISIBLE);
                         regisYear.setVisibility(View.VISIBLE);
-                        tv3.setVisibility(View.GONE);
                         regisJob.setVisibility(View.GONE);
                         break;
                     case 2:
-                        tv1.setVisibility(View.GONE);
-                        tv2.setVisibility(View.GONE);
-                        tv3.setVisibility(View.GONE);
                         regisJob.setVisibility(View.GONE);
                         spinner1.setVisibility(View.GONE);
                         regisYear.setVisibility(View.GONE);

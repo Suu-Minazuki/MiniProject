@@ -8,20 +8,20 @@
         android:id="@+id/view_sign_up_form"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:background="@drawable/sign_view_gradient" />
+        android:background="@drawable/sign_view_gradient"/>
 
     <TextView
         android:id="@+id/textView_sign_up_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/card_view"
         android:layout_marginLeft="40dp"
         android:layout_marginBottom="15dp"
-        android:layout_above="@+id/card_view"
         android:fontFamily="@font/roboto"
         android:letterSpacing=".04"
         android:text="REGISTRATION"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <androidx.cardview.widget.CardView
@@ -49,7 +49,7 @@
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_marginVertical="8dp"
-                    android:src="@mipmap/ic_launcher_image_view_round"
+                    android:src="@drawable/upload_photo"
                     app:civ_border_color="@color/black"
                     app:civ_border_width="1dp" />
 
@@ -64,121 +64,99 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="User Name"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="25"
-                    android:hint="Enter your name"
-                    android:inputType="text"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Email"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="25"
-                    android:hint="Enter your email"
-                    android:inputType="textEmailAddress"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Password"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="25"
-                    android:hint="Enter your password"
-                    android:inputType="textPassword"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Confirm Password"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/regisConfirmPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="25"
-                    android:hint="Confirm your password"
-                    android:inputType="textPassword"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="User Type"
-                    android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_marginTop="10dp"/>
+                    android:textColor="@color/black"/>
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     />
 
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Batch"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="10dp"/>
-
-                <EditText
-                    android:id="@+id/regisYear"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginTop="5dp"
-                    android:ems="25"
-                    android:hint="yyyy"
-                    android:inputType="text"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    >
 
+                    <EditText
+                        android:id="@+id/regisName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="25"
+                        android:hint="User Name"
+                        android:inputType="text"
+                        android:textSize="14sp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <EditText
+                        android:id="@+id/regisEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="25"
+                        android:hint="Email Address"
+                        android:inputType="textEmailAddress"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <EditText
+                    android:id="@+id/regisPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="25"
+                    android:hint="Enter your password"
+                    android:inputType="textPassword"
+                    android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <EditText
+                        android:id="@+id/regisConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="25"
+                        android:hint="Confirm your password"
+                        android:inputType="textPassword"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                    <EditText
+                        android:id="@+id/regisYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="25"
+                        android:hint="Year of Study"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        />
+
+                </com.google.android.material.textfield.TextInputLayout>
                 <TextView
                     android:id="@+id/tv2"
                     android:layout_width="wrap_content"
@@ -191,32 +169,26 @@
 
                 <Spinner
                     android:id="@+id/spinner1"
-                    android:layout_width="200dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     />
 
-                <TextView
-                    android:id="@+id/tv3"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Job Title"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <EditText
                     android:id="@+id/regisJob"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-4dp"
-                    android:layout_marginTop="5dp"
                     android:ems="25"
-                    android:hint="Your Job"
+                    android:hint="Job Title"
                     android:inputType="text"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
+                </com.google.android.material.textfield.TextInputLayout>
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/regisButton"
                     android:layout_width="150dp"
@@ -229,6 +201,7 @@
                     android:text="REGISTER"
                     android:letterSpacing="0.1"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:textSize="16sp" />
 
             </LinearLayout>
