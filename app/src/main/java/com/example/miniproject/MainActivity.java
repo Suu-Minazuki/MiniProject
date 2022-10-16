@@ -1,37 +1,30 @@
 package com.example.miniproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Animatable;
 import android.os.Bundle;
-import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
+import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
-import android.widget.SearchView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
-    private LinearLayout dotsLayout;
+    private static int SPLASH_TIMER = 3500;
 
-    private SliderAdapter sliderAdapter;
-    TextView[] dots;
+    //Variables
+    ImageView splash_screen_logo;
+    TextView splash_screen_title;
+    TextView splash_screen_desc;
 
-    AppCompatButton getStartedBtn;
-    Animation animation;
+    //Animations
+    Animation sideAnim, bottomAnim;
 
-    int currentPos;
+    SharedPreferences sharedPreferences;
 
-    SaveState saveState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,94 +32,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Hooks
-        viewPager = (ViewPager) findViewById(R.id.slider);
-        dotsLayout = (LinearLayout) findViewById(R.id.dots);
-        getStartedBtn = (AppCompatButton)  findViewById(R.id.getStartedBtn);
+        splash_screen_logo = findViewById(R.id.splash_screen_logo);
+        splash_screen_title = findViewById(R.id.splash_screen_title);
+        splash_screen_desc = findViewById(R.id.splash_screen_desc);
 
-        //call Adapter
-        sliderAdapter = new SliderAdapter(this);
-        viewPager.setAdapter(sliderAdapter);
+        //Animations
+        sideAnim = AnimationUtils.loadAnimation(this, R.anim.side_anim);
+        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
 
-        addDots(0);
+        //set Animations on elements
+        splash_screen_logo.setAnimation(sideAnim);
+        splash_screen_title.setAnimation(bottomAnim);
+        splash_screen_desc.setAnimation(bottomAnim);
 
-        saveState = new SaveState(MainActivity.this, "0B");
-        if(saveState.getState() == 1){
-            startActivity(new Intent(this,LoginPage.class));
-            finish();
-        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-        viewPager.addOnPageChangeListener(changeListener);
+                sharedPreferences = getSharedPreferences("onBoardingScreen", MODE_PRIVATE);
+                boolean isFirstTime = sharedPreferences.getBoolean("firstTime", true);
 
-    }
+                if (isFirstTime){
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("firstTime", false);
+                    editor.commit();
 
-    public void skip(View view){
-        startActivity(new Intent(this, LoginPage.class));
-        finish();
-    }
+                    Intent intent = new Intent(getApplicationContext(), OnBoarding.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+                    Intent intent = new Intent(getApplicationContext(), LoginPage.class);
+                    startActivity(intent);
+                    finish();
+                }
 
-    public void next(View view){
-        viewPager.setCurrentItem(currentPos + 1);
-    }
-
-    private void addDots(int position){
-
-        dots = new TextView[4];
-        dotsLayout.removeAllViews();
-
-        for(int i=0; i<dots.length; i++){
-            dots[i] = new TextView(this);
-            dots[i].setText(Html.fromHtml("&#8226;"));
-            dots[i].setTextSize(35);
-            dots[i].setTextColor(getResources().getColor(R.color.dots_color));
-
-            dotsLayout.addView(dots[i]);
-        }
-
-        if (dots.length > 0){
-            dots[position].setTextColor(getResources().getColor(R.color.teal_200));
-        }
-
-    }
-    ViewPager.OnPageChangeListener changeListener = new ViewPager.OnPageChangeListener() {
-        @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-        }
-
-        @Override
-        public void onPageSelected(int position) {
-
-            addDots(position);
-
-            currentPos = position;
-
-            if(position == 0){
-                getStartedBtn.setVisibility(View.INVISIBLE);
             }
-            else if(position == 1){
-                getStartedBtn.setVisibility(View.INVISIBLE);
-            }
-            else if(position == 2){
-                getStartedBtn.setVisibility(View.INVISIBLE);
-            }
-            else{
-                animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.bottom_anim);
-                getStartedBtn.setAnimation(animation);
-                getStartedBtn.setVisibility(View.VISIBLE);
-            }
-        }
+        }, SPLASH_TIMER);
 
-        @Override
-        public void onPageScrollStateChanged(int state) {
-
-        }
-    };
-
-    public void getStarted(View view) {
-
-        saveState.setState(1);
-        startActivity(new Intent(this,LoginPage.class));
-        finish();
     }
-
 }

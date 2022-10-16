@@ -23,22 +23,19 @@ public class SliderAdapter extends PagerAdapter {
     public int images[] = {
             R.drawable.first_slide,
             R.drawable.second_slide,
-            R.drawable.third_slide,
-            R.drawable.fourth_slide
+            R.drawable.third_slide
     };
 
     public int headings[] = {
             R.string.first_slide_title,
             R.string.second_slide_title,
-            R.string.third_slide_title,
-            R.string.fourth_slide_title
+            R.string.third_slide_title
     };
 
     public int descriptions[] = {
             R.string.first_slide_desc,
             R.string.second_slide_desc,
-            R.string.third_slide_desc,
-            R.string.fourth_slide_desc
+            R.string.third_slide_desc
     };
 
     @Override
