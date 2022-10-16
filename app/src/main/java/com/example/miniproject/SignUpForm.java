@@ -185,6 +185,7 @@ public class SignUpForm extends AppCompatActivity {
                 }
                 if (selectedImageUri != null){
                     registerNewUser();
+                    finish();
                 }else{
                     Toast.makeText(SignUpForm.this, "Select an Image", Toast.LENGTH_SHORT).show();
                 }
