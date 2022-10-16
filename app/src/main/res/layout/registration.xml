@@ -8,7 +8,7 @@
         android:id="@+id/view_sign_up_form"
         android:layout_width="match_parent"
         android:layout_height="470dp"
-        android:background="@drawable/sign_view_gradient"/>
+        android:background="@drawable/sign_view_gradient" />
 
     <TextView
         android:id="@+id/textView_sign_up_form"

@@ -8,35 +8,35 @@ public class EventWithData {
     private String event_description;
     private String event_venue;
     private String event_image;
-    private String event_date;
+    private String event_day;
+    private String event_month;
+    private String event_Year;
+    private String event_add;
     private String org_Image;
     private String org_name;
     private String org_dept;
     private String org_type;
-
+    private String event_time;
 
     public EventWithData() {
 
     }
 
-    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_date, String org_Image, String org_name, String org_dept, String org_type) {
+    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_day, String event_month, String event_Year, String event_add, String org_Image, String org_name, String org_dept, String org_type, String event_time) {
         this.event_name = event_name;
         this.event_description = event_description;
         this.event_venue = event_venue;
         this.event_image = event_image;
-        this.event_date = event_date;
+        this.event_day = event_day;
+        this.event_month = event_month;
+        this.event_Year = event_Year;
+        this.event_add = event_add;
         this.org_Image = org_Image;
         this.org_name = org_name;
         this.org_dept = org_dept;
         this.org_type = org_type;
+        this.event_time = event_time;
     }
-
-    public static Comparator<EventWithData> eventByDate = new Comparator<EventWithData>() {
-        @Override
-        public int compare(EventWithData e1, EventWithData e2) {
-            return e1.getEvent_date().compareTo(e2.getEvent_date());
-        }
-    };
 
     public String getEvent_name() {
         return event_name;
@@ -70,12 +70,36 @@ public class EventWithData {
         this.event_image = event_image;
     }
 
-    public String getEvent_date() {
-        return event_date;
+    public String getEvent_day() {
+        return event_day;
     }
 
-    public void setEvent_date(String event_date) {
-        this.event_date = event_date;
+    public void setEvent_day(String event_day) {
+        this.event_day = event_day;
+    }
+
+    public String getEvent_month() {
+        return event_month;
+    }
+
+    public void setEvent_month(String event_month) {
+        this.event_month = event_month;
+    }
+
+    public String getEvent_Year() {
+        return event_Year;
+    }
+
+    public void setEvent_Year(String event_Year) {
+        this.event_Year = event_Year;
+    }
+
+    public String getEvent_add() {
+        return event_add;
+    }
+
+    public void setEvent_add(String event_add) {
+        this.event_add = event_add;
     }
 
     public String getOrg_Image() {
@@ -108,5 +132,13 @@ public class EventWithData {
 
     public void setOrg_type(String org_type) {
         this.org_type = org_type;
+    }
+
+    public String getEvent_time() {
+        return event_time;
+    }
+
+    public void setEvent_time(String event_time) {
+        this.event_time = event_time;
     }
 }

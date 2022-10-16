@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,9 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.miniproject.EventDetails;
 import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.R;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.myviewholder> {
 
@@ -34,7 +38,7 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
     @NonNull
     @Override
     public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.event_card_design,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.event_card,parent,false);
         return new myviewholder(v);
     }
 
@@ -42,14 +46,54 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
         EventWithData eventDataModel = list.get(position);
 
-        Picasso.get().load(eventDataModel.getEvent_image()).placeholder(R.drawable.ic_baseline_image_24).into(holder.event_image);
+        Picasso.get().load(eventDataModel.getEvent_image()).placeholder(R.drawable.ic_baseline_image_24).into(holder.eventImage);
+        Picasso.get().load(eventDataModel.getOrg_Image()).placeholder(R.drawable.ic_baseline_image_24).into(holder.orgImage);
 
         holder.event_name.setText(eventDataModel.getEvent_name());
-        holder.event_date.setText(eventDataModel.getEvent_date());
-        holder.event_description.setText(eventDataModel.getEvent_description());
         holder.event_venue.setText(eventDataModel.getEvent_venue());
+        holder.eventDay.setText(eventDataModel.getEvent_day());
+        switch (eventDataModel.getEvent_month()){
+            case "1":
+                holder.eventMonth.setText("JAN");
+                break;
+            case "2":
+                holder.eventMonth.setText("FEB");
+                break;
+            case "3":
+                holder.eventMonth.setText("MAR");
+                break;
+            case "4":
+                holder.eventMonth.setText("APR");
+                break;
+            case "5":
+                holder.eventMonth.setText("MAY");
+                break;
+            case "6":
+                holder.eventMonth.setText("JUN");
+                break;
+            case "7":
+                holder.eventMonth.setText("JUL");
+                break;
+            case "8":
+                holder.eventMonth.setText("AUG");
+                break;
+            case "9":
+                holder.eventMonth.setText("SEP");
+                break;
+            case "10":
+                holder.eventMonth.setText("OCT");
+                break;
+            case "11":
+                holder.eventMonth.setText("NOV");
+                break;
+            case "12":
+                holder.eventMonth.setText("DEC");
+                break;
+        }
+        holder.eventTime.setText(eventDataModel.getEvent_time());
+        holder.orgName.setText(eventDataModel.getOrg_name());
 
-        holder.eventClick.setOnClickListener(new View.OnClickListener() {
+        holder.click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, EventDetails.class);
@@ -57,8 +101,12 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
                 intent.putExtra("EVENT_IMAGE", eventDataModel.getEvent_image());
                 intent.putExtra("EVENT_NAME", eventDataModel.getEvent_name());
                 intent.putExtra("EVENT_DESCRIPTION", eventDataModel.getEvent_description());
-                intent.putExtra("EVENT_DATE", eventDataModel.getEvent_date());
                 intent.putExtra("EVENT_VENUE", eventDataModel.getEvent_venue());
+                intent.putExtra("EVENT_DAY", eventDataModel.getEvent_day());
+                intent.putExtra("EVENT_MONTH", eventDataModel.getEvent_month());
+                intent.putExtra("EVENT_YEAR", eventDataModel.getEvent_Year());
+                intent.putExtra("EVENT_TIME", eventDataModel.getEvent_time());
+                intent.putExtra("EVENT_ADD", eventDataModel.getEvent_add());
                 intent.putExtra("EVENT_ORGI", eventDataModel.getOrg_Image());
                 intent.putExtra("EVENT_ORGN", eventDataModel.getOrg_name());
                 intent.putExtra("EVENT_ORGD", eventDataModel.getOrg_dept());
@@ -79,20 +127,23 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
 
     public static class myviewholder extends RecyclerView.ViewHolder{
 
-        TextView event_date, event_name, event_description, event_venue;
-        ImageView event_image;
-        CardView eventClick;
+        TextView event_name, event_venue, eventDay, eventMonth, eventTime, orgName;
+        ShapeableImageView eventImage;
+        CircleImageView orgImage;
+        CardView click;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
 
-            eventClick = itemView.findViewById(R.id.eventClick);
-
-            event_date = itemView.findViewById(R.id.event_date);
-            event_name = itemView.findViewById(R.id.event_name);
-            event_description = itemView.findViewById(R.id.event_description);
-            event_venue = itemView.findViewById(R.id.event_venue);
-            event_image = itemView.findViewById(R.id.image);
+            click = itemView.findViewById(R.id.click);
+            orgImage = itemView.findViewById(R.id.OrgImage);
+            event_name = itemView.findViewById(R.id.eventName);
+            event_venue = itemView.findViewById(R.id.eventVenue);
+            eventImage = itemView.findViewById(R.id.eventImage);
+            eventDay = itemView.findViewById(R.id.eventDay);
+            eventMonth = itemView.findViewById(R.id.eventMonth);
+            eventTime = itemView.findViewById(R.id.eventTime);
+            orgName = itemView.findViewById(R.id.OrgName);
 
 
         }

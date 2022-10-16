@@ -33,14 +33,14 @@
             android:id="@+id/event_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#00F80E"
-            android:textSize="12sp"
-            android:text="Date"
-            android:layout_marginStart="20dp"
-            android:layout_toRightOf="@id/image"
             android:layout_below="@+id/view_color_random"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
-            android:gravity="center_vertical"/>
+            android:layout_toRightOf="@id/image"
+            android:gravity="center_vertical"
+            android:text="Date"
+            android:textColor="#00F80E"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/event_name"
@@ -48,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/event_date"
             android:layout_marginStart="20dp"
-            android:layout_toRightOf="@id/image"
             android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/image"
             android:gravity="center_vertical"
             android:text="Event Name"
             android:textColor="#000000"

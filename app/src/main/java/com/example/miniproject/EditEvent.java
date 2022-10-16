@@ -15,6 +15,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -34,15 +35,21 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class EditEvent extends AppCompatActivity {
 
     private EditText ed_name, ed_description, ed_venue;
+    private CalendarView calendar_view;
+    private TimePicker timePicker;
     private ImageView IVPreviewImage;
-    private String eventOccursOn, org_name, org_image, org_usertype, org_dept;
+    private String org_name, org_image, org_usertype, org_dept, event_month, event_day, event_year, event_time, event_add;
     private ImageButton cancel;
+    private Button submit_btn;
     private Uri selectedImageUri;
     private FirebaseStorage storage;
     private StorageReference uploader;
@@ -52,25 +59,34 @@ public class EditEvent extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.edit_event);
+        setContentView(R.layout.event_add);
 
         ed_name = findViewById(R.id.ed_Name);
         ed_description = findViewById(R.id.ed_description);
         ed_venue = findViewById(R.id.ed_Venue);
         IVPreviewImage = findViewById(R.id.add_image);
-        cancel = findViewById(R.id.cancel_btn);
-        CalendarView calendar_view = findViewById(R.id.calender_view);
-        Button submit_btn = findViewById(R.id.submit_btn);
+        cancel = findViewById(R.id.appCompatImageButton);
+        calendar_view = findViewById(R.id.calendarView);
+        timePicker = findViewById(R.id.timePicker3);
+        submit_btn = findViewById(R.id.ed_submit);
 
+        //Getting day month and year from user profile
         calendar_view.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
-                Calendar c = Calendar.getInstance();
-                c.set(i, i1, i2);
-                eventOccursOn = String.valueOf(c.getTimeInMillis());
+                event_year = String.valueOf(i);
+                event_month = String.valueOf(i1);
+                event_day = String.valueOf(i2);
+            }
+        });
+        timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                event_time = i + ":" + i1;
             }
         });
 
+        //getting data from user profile
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         org_image = sharedPreferences.getString("Image", "");
         org_name = sharedPreferences.getString("Name", "");
@@ -84,6 +100,7 @@ public class EditEvent extends AppCompatActivity {
             }
         });
 
+        //Submit the files
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +108,7 @@ public class EditEvent extends AppCompatActivity {
             }
         });
 
+        //Cancel upload
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -130,12 +148,12 @@ public class EditEvent extends AppCompatActivity {
         storage = FirebaseStorage.getInstance();
         uploader = storage.getReference("Image1"+new Random().nextInt(50));
 
-        if (selectedImageUri != null) {
-
             // Code for showing progressDialog while uploading
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
+
+            event_add = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
             // adding listeners on upload
             // or failure of image
@@ -161,11 +179,15 @@ public class EditEvent extends AppCompatActivity {
                                                     ed_description.getText().toString(),
                                                     ed_venue.getText().toString(),
                                                     uri.toString(),
-                                                    eventOccursOn,
+                                                    event_day,
+                                                    event_month,
+                                                    event_year,
+                                                    event_add,
                                                     org_image,
                                                     org_name,
                                                     org_dept,
-                                                    org_usertype
+                                                    org_usertype,
+                                                    event_time
                                             );
                                             root.child(key).setValue(eventWithData);
 
@@ -196,6 +218,5 @@ public class EditEvent extends AppCompatActivity {
                                 }
                             });
         }
-    }
 
 }

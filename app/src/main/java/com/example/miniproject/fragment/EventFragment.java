@@ -53,7 +53,6 @@ public class EventFragment extends Fragment {
         eventAdapterClass = new EventAdapterClass(getContext(), list);
         recyclerView.setAdapter(eventAdapterClass);
         loadEvents();
-        Collections.sort(list, EventWithData.eventByDate);
         refreshEvents();
         return view;
     }
