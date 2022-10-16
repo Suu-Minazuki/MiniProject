@@ -16,12 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/slider_image"
-        android:textColor="@color/black"
+        android:fontFamily="@font/merriweather_bold"
         android:gravity="center"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
         android:text=""
-        android:textSize="25sp" />
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/slider_description"
