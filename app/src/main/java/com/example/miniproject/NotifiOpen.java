@@ -1,38 +1,27 @@
-package com.example.miniproject.fragment;
+package com.example.miniproject;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.example.miniproject.Model.EventWithData;
-import com.example.miniproject.R;
-import com.example.miniproject.adapter.EventAdapterClass;
 import com.example.miniproject.adapter.NotificationAdapter;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class NotificationsFragment extends Fragment {
+public class NotifiOpen extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private DatabaseReference database;
@@ -40,23 +29,18 @@ public class NotificationsFragment extends Fragment {
     private ArrayList<EventWithData> list;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    public NotificationsFragment() {
-
-    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_notifications, container, false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.notifi_open);
 
-        swipeRefreshLayout = view.findViewById(R.id.pullToRefresh);
+        swipeRefreshLayout = findViewById(R.id.pullToRefresh);
         database = FirebaseDatabase.getInstance().getReference("Events");
-        recyclerView = view.findViewById(R.id.recycler_view);
+        recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         list = new ArrayList<>();
-        notificationAdapter = new NotificationAdapter(getContext(), list);
+        notificationAdapter = new NotificationAdapter(this, list);
         recyclerView.setAdapter(notificationAdapter);
 
         database.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -78,7 +62,7 @@ public class NotificationsFragment extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Toast.makeText(getContext(), "Refreshing", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NotifiOpen.this, "Refreshing", Toast.LENGTH_SHORT).show();
                 notificationAdapter.notifyDataSetChanged();
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -89,6 +73,6 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        return view;
+
     }
 }

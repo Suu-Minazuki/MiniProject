@@ -1,71 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-tools:context=".fragment.ProfileFragment"
-android:orientation="vertical">
-
-<RelativeLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/RL1">
+    android:layout_height="match_parent"
+    tools:context=".EventDetails"
+    android:orientation="vertical">
 
-    <View
-        android:id="@+id/first_view"
-        android:layout_width="match_parent"
-        android:layout_height="137.5dp"
-        android:background="#00FF00" />
-
-    <View
-        android:layout_width="175dp"
-        android:layout_height="175dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/alumni_details_profile" />
-
-    <View
-        android:id="@+id/second_view"
-        android:layout_width="match_parent"
-        android:layout_height="87.5dp"
-        android:layout_below="@+id/first_view" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImage"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="62.5dp"
-        android:src="@mipmap/ic_launcher_image_view" />
-
-    <TextView
-        android:id="@+id/profileName"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/second_view"
-        android:gravity="center"
-        android:text="Alumni name"
-        android:textSize="16sp" />
+        android:id="@+id/RL1">
 
-    <TextView
-        android:id="@+id/profileDepartment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profileName"
-        android:gravity="center"
-        android:text="Department"
-        android:textSize="16sp" />
+        <View
+            android:id="@+id/first_view"
+            android:layout_width="match_parent"
+            android:layout_height="137.5dp"
+            android:background="#00FF00" />
 
-    <TextView
-        android:id="@+id/profileYear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profileDepartment"
-        android:gravity="center"
-        android:text="Class of blank year"
-        android:textSize="16sp" />
+        <View
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/alumni_details_profile" />
 
-</RelativeLayout>
+        <View
+            android:id="@+id/second_view"
+            android:layout_width="match_parent"
+            android:layout_height="87.5dp"
+            android:layout_below="@+id/first_view" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="62.5dp"
+            android:src="@mipmap/ic_launcher_image_view" />
+
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/second_view"
+            android:gravity="center"
+            android:text="Alumni name"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/profileDepartment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileName"
+            android:gravity="center"
+            android:text="Department"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/profileYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profileDepartment"
+            android:gravity="center"
+            android:text="Class of blank year"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"

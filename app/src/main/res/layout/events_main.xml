@@ -55,9 +55,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:tabPaddingStart="1dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
+        app:tabPaddingStart="1dp"
         app:tabTextAppearance="@style/TextAppearance.AppCompat.Small">
 
         <com.google.android.material.tabs.TabItem
@@ -66,23 +66,12 @@
             android:icon="@drawable/ic_baseline_event_available_24"
             android:text="@string/events" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_baseline_notifications_24"
-            android:text="@string/notifications" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:icon="@drawable/ic_baseline_alumni_24"
             android:text="Alumni" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_baseline_person_24"
-            android:text="Profile" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -98,5 +87,44 @@
         android:src="@drawable/ic_baseline_add_24"
         app:borderWidth="2dp" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_btn_eve"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:layout_above="@id/float_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_event_available_24"
+        app:borderWidth="2dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_btn_not"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:layout_above="@id/tab_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toLeftOf="@id/float_btn"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_notifications_24"
+        app:borderWidth="2dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/float_btn_pro"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:layout_above="@id/tab_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@id/float_btn"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_baseline_person_24"
+        app:borderWidth="2dp" />
 
 </RelativeLayout>

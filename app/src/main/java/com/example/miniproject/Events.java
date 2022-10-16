@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,13 +41,14 @@ public class Events extends AppCompatActivity {
     private TabLayout tab_layout;
     private ViewPager2 viewPager2;
     private PageAdapter pageAdapter;
-    private FloatingActionButton float_btn;
+    private FloatingActionButton float_btn, float_btn_eve, float_btn_not, float_btn_pro;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private ArrayList<UserModel> list;
     private SearchViewAdapter searchViewAdapter;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private boolean flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,11 +58,14 @@ public class Events extends AppCompatActivity {
         tab_layout = findViewById(R.id.tab_layout);
         viewPager2 = findViewById(R.id.view_pager_2);
         float_btn = findViewById(R.id.float_btn);
+        float_btn_eve = findViewById(R.id.float_btn_eve);
+        float_btn_not = findViewById(R.id.float_btn_not);
+        float_btn_pro = findViewById(R.id.float_btn_pro);
         searchView = findViewById(R.id.searchView);
         pageAdapter = new PageAdapter(this);
         viewPager2.setAdapter(pageAdapter);
-
         searchView.clearFocus();
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -74,6 +79,7 @@ public class Events extends AppCompatActivity {
             }
         });
 
+        //search function
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("User");
         Query query = databaseReference.orderByChild("userType").equalTo("Alumni");
@@ -123,15 +129,64 @@ public class Events extends AppCompatActivity {
             }
         });
 
-        float_btn.setOnClickListener(new View.OnClickListener() {
+        changeInFloat();
+
+        float_btn_eve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                flag = !flag;
                 startActivity(new Intent(getApplicationContext(),EditEvent.class));
+                float_btn_eve.setVisibility(View.GONE);
+                float_btn_not.setVisibility(View.GONE);
+                float_btn_pro.setVisibility(View.GONE);
+            }
+        });
+
+        float_btn_not.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = !flag;
+                startActivity(new Intent(getApplicationContext(),NotifiOpen.class));
+                float_btn_eve.setVisibility(View.GONE);
+                float_btn_not.setVisibility(View.GONE);
+                float_btn_pro.setVisibility(View.GONE);
+            }
+        });
+
+        float_btn_pro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                flag = !flag;
+                startActivity(new Intent(getApplicationContext(),ProfileDetails.class));
+                float_btn_eve.setVisibility(View.GONE);
+                float_btn_not.setVisibility(View.GONE);
+                float_btn_pro.setVisibility(View.GONE);
             }
         });
 
     }
 
+    private void changeInFloat() {
+        flag = true;
+        float_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (flag){
+                    float_btn_eve.setVisibility(View.VISIBLE);
+                    float_btn_not.setVisibility(View.VISIBLE);
+                    float_btn_pro.setVisibility(View.VISIBLE);
+                    flag = !flag;
+                }else {
+                    float_btn_eve.setVisibility(View.GONE);
+                    float_btn_not.setVisibility(View.GONE);
+                    float_btn_pro.setVisibility(View.GONE);
+                    flag = true;
+                }
+            }
+        });
+    }
+
+    //search filter
     private void filterList(String text) {
         ArrayList<UserModel> filtered = new ArrayList<>();
         if (TextUtils.isEmpty(text)){
