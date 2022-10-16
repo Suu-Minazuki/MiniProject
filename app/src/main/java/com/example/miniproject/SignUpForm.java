@@ -100,16 +100,18 @@ public class SignUpForm extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i){
                     case 0:
+                        break;
+                    case 1:
                         regisJob.setVisibility(View.VISIBLE);
                         spinner1.setVisibility(View.VISIBLE);
                         regisYear.setVisibility(View.VISIBLE);
                         break;
-                    case 1:
+                    case 2:
                         spinner1.setVisibility(View.VISIBLE);
                         regisYear.setVisibility(View.VISIBLE);
                         regisJob.setVisibility(View.GONE);
                         break;
-                    case 2:
+                    case 3:
                         regisJob.setVisibility(View.GONE);
                         spinner1.setVisibility(View.GONE);
                         regisYear.setVisibility(View.GONE);
