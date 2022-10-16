@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,9 +10,13 @@
         android:id="@+id/splash_screen_logo"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="80dp"
         android:padding="20dp"
-        android:src="@drawable/ams_logo" />
+        android:src="@drawable/ams_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/splash_screen_title"
@@ -24,15 +28,20 @@
         android:text="WELCOME TO \n ALUMNI MANAGEMENT SYSTEM"
         android:textColor="@color/black"
         android:textSize="28sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_screen_logo" />
 
     <TextView
+        android:id="@+id/splash_screen_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/splash_screen_desc"
-        android:text="A perfect place to know more about your ALumni:)"
-        android:gravity="center"
         android:layout_below="@+id/splash_screen_title"
-        android:layout_marginTop="10dp"
-        />
-</RelativeLayout>
+        android:gravity="center"
+        android:text="A perfect place to know more about your Alumni:)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_screen_title" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIMER = 2500;
+    private static int SPLASH_TIMER = 3000;
 
     //Variables
     ImageView splash_screen_logo;
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView splash_screen_desc;
 
     //Animations
-    Animation sideAnim, bottomAnim;
+    Animation fadeAnim;
 
     SharedPreferences sharedPreferences;
 
@@ -37,13 +37,12 @@ public class MainActivity extends AppCompatActivity {
         splash_screen_desc = findViewById(R.id.splash_screen_desc);
 
         //Animations
-        sideAnim = AnimationUtils.loadAnimation(this, R.anim.side_anim);
-        bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_anim);
+        fadeAnim = AnimationUtils.loadAnimation(this, R.anim.fade);
 
         //set Animations on elements
-        splash_screen_logo.setAnimation(sideAnim);
-        splash_screen_title.setAnimation(bottomAnim);
-        splash_screen_desc.setAnimation(bottomAnim);
+        splash_screen_logo.setAnimation(fadeAnim);
+        splash_screen_title.setAnimation(fadeAnim);
+        splash_screen_desc.setAnimation(fadeAnim);
 
         new Handler().postDelayed(new Runnable() {
             @Override
