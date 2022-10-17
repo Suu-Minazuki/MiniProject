@@ -23,7 +23,7 @@ public class EventDetails extends AppCompatActivity {
         eventI = findViewById(R.id.eventImage);
         eventN = findViewById(R.id.eventName);
         eventDe = findViewById(R.id.eventDescription);
-        eventDa = findViewById(R.id.eventDate);
+        eventDa = findViewById(R.id.textView6);
         eventV = findViewById(R.id.eventVenue);
         eventOI = findViewById(R.id.OrgImage);
         eventON = findViewById(R.id.OrgName);
