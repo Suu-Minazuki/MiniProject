@@ -11,6 +11,7 @@ import android.widget.SearchView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
@@ -61,6 +62,7 @@ public class Events extends AppCompatActivity {
         searchView = findViewById(R.id.searchView);
         pageAdapter = new PageAdapter(this);
         viewPager2.setAdapter(pageAdapter);
+        searchView.onActionViewExpanded();
         searchView.clearFocus();
 
         btnAnimationMainBefore = AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
