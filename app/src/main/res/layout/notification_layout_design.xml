@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
     app:cardCornerRadius="10dp">
 
-
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/notImage"
@@ -17,39 +18,61 @@
             android:layout_height="65dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
-            android:src="@color/ic_launcher_image_view_background"
-            app:civ_border_width="1dp">
+            android:src="@mipmap/ic_launcher_image_view_round"
+            app:civ_border_width="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/notOrg"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.333" />
 
-        </de.hdodenhof.circleimageview.CircleImageView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/notOrg"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/notImage"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_centerInParent="true">
+            android:ellipsize="end"
+            android:ems="13"
+            android:fontFamily="@font/roboto"
+            android:maxLines="3"
+            android:paddingVertical="5dp"
+            android:text="Event Title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/notEvent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/notImage"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/notOrg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Event Title"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/notEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:ems="14"
+            android:maxLines="2"
+            android:paddingVertical="5dp"
+            android:text="Event Description"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.177"
+            app:layout_constraintStart_toEndOf="@+id/notImage"
+            app:layout_constraintTop_toBottomOf="@+id/notOrg" />
 
-            <TextView
-                android:id="@+id/notEvent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Event Description"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        </LinearLayout>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
