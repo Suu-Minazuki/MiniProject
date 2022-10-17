@@ -18,7 +18,7 @@ public class EventDetails extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.event_details);
+        setContentView(R.layout.details_event);
 
         eventI = findViewById(R.id.eventImage);
         eventN = findViewById(R.id.eventName);
@@ -27,17 +27,14 @@ public class EventDetails extends AppCompatActivity {
         eventV = findViewById(R.id.eventVenue);
         eventOI = findViewById(R.id.OrgImage);
         eventON = findViewById(R.id.OrgName);
-        eventOD = findViewById(R.id.OrgDepartment);
         eventOT = findViewById(R.id.OrgType);
 
-        Picasso.get().load(getIntent().getStringExtra("EVENT_IMAGE")).placeholder(R.drawable.ic_baseline_image_24).into(eventI);
+        Picasso.get().load(getIntent().getStringExtra("EVENT_IMAGE")).placeholder(R.drawable.ic_launcher_background).into(eventI);
         eventN.setText(getIntent().getStringExtra("EVENT_NAME"));
         eventDe.setText(getIntent().getStringExtra("EVENT_DESCRIPTION"));
-        eventDa.setText(getIntent().getStringExtra("EVENT_DATE"));
         eventV.setText(getIntent().getStringExtra("EVENT_VENUE"));
-        Picasso.get().load(getIntent().getStringExtra("EVENT_ORGI")).placeholder(R.drawable.ic_baseline_image_24).into(eventOI);
+        Picasso.get().load(getIntent().getStringExtra("EVENT_ORGI")).placeholder(R.drawable.ic_launcher_background).into(eventOI);
         eventON.setText(getIntent().getStringExtra("EVENT_ORGN"));
-        eventOD.setText(getIntent().getStringExtra("EVENT_ORGD"));
         eventOT.setText(getIntent().getStringExtra("EVENT_ORGT"));
 
     }
