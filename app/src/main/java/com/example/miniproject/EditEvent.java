@@ -84,7 +84,28 @@ public class EditEvent extends AppCompatActivity {
         timePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker timePicker, int i, int i1) {
-                event_time = i + ":" + i1;
+                int hour = i;
+                int minutes = i1;
+                String timeSet = "";
+                if (hour > 12) {
+                    hour -= 12;
+                    timeSet = "PM";
+                } else if (hour == 0) {
+                    hour += 12;
+                    timeSet = "AM";
+                } else if (hour == 12){
+                    timeSet = "PM";
+                }else{
+                    timeSet = "AM";
+                }
+                String min = "";
+                if (minutes < 10)
+                    min = "0" + minutes ;
+                else
+                    min = String.valueOf(minutes);
+
+                // Append in a StringBuilder
+                event_time = new StringBuilder().append(hour).append(':').append(min ).append(" ").append(timeSet).toString();
             }
         });
 
