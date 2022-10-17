@@ -47,8 +47,10 @@ public class EventFragment extends Fragment {
         database = FirebaseDatabase.getInstance().getReference("Events");
         swipeRefreshLayout = view.findViewById(R.id.pullToRefresh);
         recyclerView = view.findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         list = new ArrayList<>();
         eventAdapterClass = new EventAdapterClass(getContext(), list);
         recyclerView.setAdapter(eventAdapterClass);
