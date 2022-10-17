@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/backg_shade.xml" value="0.183" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/button_edit_profile.xml" value="0.183" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/button_gradient.xml" value="0.184" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/circle.xml" value="0.183" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1135" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.1445" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/icon_mail.xml" value="0.1135" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/sign_view_gradient.xml" value="0.184" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/textarea.xml" value="0.183" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/activity_alumni_details.xml" value="0.14407866609662248" />
@@ -23,7 +26,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/fragment_profile.xml" value="0.14407866609662248" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/on_boarding.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/registration.xml" value="0.14407866609662248" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/user_profile.xml" value="0.22" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MiniProject/app/src/main/res/layout/user_profile.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/uset/AndroidStudioProjects/MiniProject/app/src/main/res/drawable-v24/alumni_details_profile_imageview.xml" value="0.1605" />
         <entry key="..\:/Users/uset/AndroidStudioProjects/MiniProject/app/src/main/res/drawable-v24/next_slide.xml" value="0.1515" />
         <entry key="..\:/Users/uset/AndroidStudioProjects/MiniProject/app/src/main/res/drawable/alumni_details_profile.xml" value="0.1605" />
