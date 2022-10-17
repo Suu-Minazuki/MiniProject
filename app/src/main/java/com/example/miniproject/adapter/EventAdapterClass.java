@@ -53,40 +53,40 @@ public class EventAdapterClass extends RecyclerView.Adapter<EventAdapterClass.my
         holder.event_venue.setText(eventDataModel.getEvent_venue());
         holder.eventDay.setText(eventDataModel.getEvent_day());
         switch (eventDataModel.getEvent_month()){
-            case "1":
+            case "0":
                 holder.eventMonth.setText("JAN");
                 break;
-            case "2":
+            case "1":
                 holder.eventMonth.setText("FEB");
                 break;
-            case "3":
+            case "2":
                 holder.eventMonth.setText("MAR");
                 break;
-            case "4":
+            case "3":
                 holder.eventMonth.setText("APR");
                 break;
-            case "5":
+            case "4":
                 holder.eventMonth.setText("MAY");
                 break;
-            case "6":
+            case "5":
                 holder.eventMonth.setText("JUN");
                 break;
-            case "7":
+            case "6":
                 holder.eventMonth.setText("JUL");
                 break;
-            case "8":
+            case "7":
                 holder.eventMonth.setText("AUG");
                 break;
-            case "9":
+            case "8":
                 holder.eventMonth.setText("SEP");
                 break;
-            case "10":
+            case "9":
                 holder.eventMonth.setText("OCT");
                 break;
-            case "11":
+            case "10":
                 holder.eventMonth.setText("NOV");
                 break;
-            case "12":
+            case "11":
                 holder.eventMonth.setText("DEC");
                 break;
         }
