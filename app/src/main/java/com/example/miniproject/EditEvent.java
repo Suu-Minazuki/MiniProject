@@ -105,7 +105,7 @@ public class EditEvent extends AppCompatActivity {
                     min = String.valueOf(minutes);
 
                 // Append in a StringBuilder
-                event_time = new StringBuilder().append(hour).append(':').append(min ).append(" ").append(timeSet).toString();
+                event_time = new StringBuilder().append(hour).append(':').append(min ).append("-").append(timeSet).toString();
             }
         });
 
