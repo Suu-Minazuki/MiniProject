@@ -6,9 +6,23 @@
     tools:context=".fragment.AlumniFragment">
     <!-- TODO: Update blank fragment layout -->
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto"
+        android:letterSpacing="0.05"
+        android:text="Alumni"
+        android:textColor="#000080"
+        android:textSize="20sp" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pullToRefresh"
+        android:layout_marginTop="45dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
