@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EditProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -26,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/roboto"
         android:letterSpacing="0.05"
-        android:text="Event Details"
+        android:text="Edit Profile"
         android:textColor="#000080"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,21 +38,21 @@
     <ScrollView
         android:id="@+id/scrollView4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:layout_editor_absoluteX="16dp">
+        tools:layout_editor_absoluteX="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/dummy_image"
+                android:src="@drawable/ic_launcher_background"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +61,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_height="wrap_content"
                 android:elevation="0dp"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp"
@@ -72,12 +73,11 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:padding="10dp">
 
-
-                    <TextView
-                        android:id="@+id/textView4"
+                    <EditText
+                        android:id="@+id/alumni_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="72dp"
@@ -91,43 +91,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:fontFamily="@font/merriweather_bold"
-                        android:text="user Type"
-                        android:textColor="#0000ff"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.95"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/appCompatButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginTop="32dp"
-                        android:background="@drawable/button_edit_profile"
-                        android:drawableEnd="@drawable/ic_baseline_edit_24"
-                        android:paddingHorizontal="10dp"
-                        android:text="Edit Profile "
-                        android:textColor="#0000ff"
-                        android:textSize="12sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
+                    <EditText
                         android:id="@+id/editText2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="12dp"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="20dp"
                         android:background="@drawable/backg_shade"
                         android:fontFamily="@font/lato_regular"
                         android:hint="Description"
@@ -136,9 +105,9 @@
                         android:paddingVertical="10dp"
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.533"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                        app:layout_constraintTop_toBottomOf="@+id/alumni_name" />
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cardView5"
@@ -155,9 +124,9 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginHorizontal="15dp"
-                            android:layout_marginVertical="35dp">
+                            android:layout_marginVertical="25dp">
 
                             <androidx.cardview.widget.CardView
                                 android:id="@+id/cardView2"
@@ -165,15 +134,16 @@
                                 android:layout_height="wrap_content"
                                 android:elevation="4dp"
                                 app:cardCornerRadius="10dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintHorizontal_bias="0.5"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <LinearLayout
-                                    android:layout_width="100dp"
-                                    android:layout_height="150dp"
-                                    android:gravity="center_horizontal"
-                                    android:orientation="vertical"
+                                    android:layout_width="300dp"
+                                    android:layout_height="70dp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
                                     android:paddingHorizontal="10dp"
                                     android:paddingVertical="15dp">
 
@@ -185,15 +155,11 @@
                                         tools:layout_editor_absoluteX="45dp"
                                         tools:layout_editor_absoluteY="0dp" />
 
-                                    <TextView
-                                        android:id="@+id/userCourse"
+                                    <Spinner
+                                        android:id="@+id/alumni_dept"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:ems="5"
-                                        android:fontFamily="@font/roboto"
-                                        android:text="BE in Information Technology"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/black" />
+                                        android:fontFamily="@font/roboto" />
 
                                 </LinearLayout>
 
@@ -204,18 +170,18 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:elevation="4dp"
+                                android:layout_marginTop="5dp"
                                 app:cardCornerRadius="10dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/cardView4"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/cardView2"
-                                app:layout_constraintTop_toTopOf="parent">
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
                                 <LinearLayout
-                                    android:layout_width="100dp"
-                                    android:layout_height="150dp"
-                                    android:gravity="center_horizontal"
-                                    android:orientation="vertical"
+                                    android:layout_width="300dp"
+                                    android:layout_height="80dp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
                                     android:paddingHorizontal="10dp"
                                     android:paddingVertical="15dp">
 
@@ -227,14 +193,14 @@
                                         tools:layout_editor_absoluteX="45dp"
                                         tools:layout_editor_absoluteY="0dp" />
 
-                                    <TextView
-                                        android:id="@+id/userJob"
+                                    <EditText
+                                        android:id="@+id/user_job"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:ems="5"
+                                        android:textSize="16sp"
+                                        android:ems="9"
                                         android:fontFamily="@font/roboto"
                                         android:text="Web Designer"
-                                        android:textAlignment="center"
                                         android:textColor="@color/black" />
 
                                 </LinearLayout>
@@ -245,19 +211,19 @@
                                 android:id="@+id/cardView4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginVertical="5dp"
                                 android:elevation="4dp"
                                 app:cardCornerRadius="10dp"
-                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/cardView3"
-                                app:layout_constraintTop_toTopOf="parent">
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
                                 <LinearLayout
-                                    android:layout_width="100dp"
-                                    android:layout_height="150dp"
-                                    android:gravity="center_horizontal"
-                                    android:orientation="vertical"
+                                    android:layout_width="300dp"
+                                    android:layout_height="80dp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
                                     android:paddingHorizontal="10dp"
                                     android:paddingVertical="15dp">
 
@@ -270,13 +236,21 @@
                                         tools:layout_editor_absoluteY="0dp" />
 
                                     <TextView
-                                        android:id="@+id/userBatch"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="16sp"
+                                        android:fontFamily="@font/roboto"
+                                        android:text="Batch of "
+                                        android:textColor="@color/black"/>
+
+                                    <EditText
+                                        android:id="@+id/alumni_graduate_year"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:ems="3"
+                                        android:textSize="16sp"
                                         android:fontFamily="@font/roboto"
-                                        android:text="Batch of  2020"
-                                        android:textAlignment="center"
+                                        android:text="2020"
                                         android:textColor="@color/black" />
 
                                 </LinearLayout>
@@ -288,20 +262,19 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/logBtn"
-                        android:layout_width="120dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="16dp"
-                        android:background="@drawable/button_edit_profile"
-                        android:drawableEnd="@drawable/ic_baseline_login_24"
+                        android:id="@+id/save"
+                        android:layout_width="200dp"
+                        android:layout_height="55dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@drawable/button_join"
                         android:fontFamily="@font/roboto"
-                        android:paddingHorizontal="10dp"
-                        android:text="Log Out"
-                        android:textColor="#0000ff"
-                        android:textSize="14sp"
+                        android:text="Save"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.034"
+                        app:layout_constraintHorizontal_bias="0.497"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cardView5" />
 
@@ -310,7 +283,7 @@
             </androidx.cardview.widget.CardView>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profileImage"
+                android:id="@+id/alumni_image"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="25dp"
@@ -320,6 +293,7 @@
                 app:layout_constraintTop_toTopOf="@+id/cardView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </ScrollView>
 

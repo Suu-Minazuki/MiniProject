@@ -243,5 +243,4 @@ public class EditEvent extends AppCompatActivity {
                                 }
                             });
         }
-
 }

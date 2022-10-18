@@ -4,13 +4,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.miniproject.Model.UserModel;
 import com.google.firebase.database.DataSnapshot;
@@ -21,16 +25,22 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileDetails extends AppCompatActivity {
 
-    private CircleImageView profileImage;
-    private TextView profileName, profileDepartment, profileYear, profileDescription, profileEmail, profileJob, profileType;
-    private ImageButton editP, logBtn;
+    public CircleImageView profileImage;
+    private ImageView imageView2;
+    private TextView profileName, editText2, userCourse, userJob, userBatch, profileEmail, profileJob, profileType;
+    private AppCompatImageButton appCompatImageButton;
+    private AppCompatButton appCompatButton, logBtn;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     public String orgName, orgDept, orgType, orgImage;
+    private Intent intent;
+    private UserModel userModel;
     public static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -40,14 +50,15 @@ public class ProfileDetails extends AppCompatActivity {
 
         profileImage = findViewById(R.id.profileImage);
         profileName = findViewById(R.id.textView4);
-        //profileDepartment = findViewById(R.id.profileDepartment);
-        //profileYear = findViewById(R.id.profileYear);
-        //profileDescription = findViewById(R.id.profileDescription);
-        //profileEmail = findViewById(R.id.profileEmail);
+        imageView2 = findViewById(R.id.imageView2);
+        editText2 = findViewById(R.id.editText2);
+        userCourse = findViewById(R.id.userCourse);
+        userJob = findViewById(R.id.userJob);
+        userBatch = findViewById(R.id.userBatch);
         profileType = findViewById(R.id.textView5);
-        //profileJob = findViewById(R.id.profileJob);
-        //editP = findViewById(R.id.editBtn);
-        //logBtn = findViewById(R.id.logBtn);
+        logBtn = findViewById(R.id.logBtn);
+        appCompatButton = findViewById(R.id.appCompatButton);
+        appCompatImageButton = findViewById(R.id.appCompatImageButton);
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
         String eMail = sharedPreferences.getString("email", "");
@@ -58,11 +69,36 @@ public class ProfileDetails extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    UserModel userModel = dataSnapshot.getValue(UserModel.class);
+                    userModel = dataSnapshot.getValue(UserModel.class);
                     assert userModel != null;
-                    Picasso.get().load(userModel.getUserImage()).placeholder(R.drawable.ic_baseline_image_24).into(profileImage);
-                    profileName.setText(userModel.getUserName());
-                    profileType.setText(userModel.getUserType());
+                    //user profile image
+                    if (!Objects.equals(userModel.getUserImage(), "")){
+                        Picasso.get().load(userModel.getUserImage()).placeholder(R.drawable.ic_launcher_background).into(profileImage);
+                    }
+                    //user background Image
+                    if (!Objects.equals(userModel.getUserBImage(), "")){
+                        Picasso.get().load(userModel.getUserBImage()).placeholder(R.drawable.ic_launcher_background).into(imageView2);
+                    }
+                    //USER NAME
+                    if (!Objects.equals(userModel.getUserName(), "")){
+                        profileName.setText(userModel.getUserName());
+                    }
+                    //user type
+                    if (!Objects.equals(userModel.getUserType(), "")){
+                        profileType.setText(userModel.getUserType());
+                    }
+                    if (!Objects.equals(userModel.getDescription(), "")){
+                        editText2.setText(userModel.getDescription());
+                    }
+                    if (!Objects.equals(userModel.getUserDepartment(), "")){
+                        userCourse.setText(userModel.getUserDepartment());
+                    }
+                    if (!Objects.equals(userModel.getUserJob(), "")){
+                        userJob.setText(userModel.getUserJob());
+                    }
+                    if (!Objects.equals(userModel.getUserYear(), "")){
+                        userBatch.setText(userModel.getUserYear());
+                    }
 
                     orgImage = userModel.getUserImage();
                     orgName = userModel.getUserName();
@@ -85,24 +121,29 @@ public class ProfileDetails extends AppCompatActivity {
             }
         });
 
+        appCompatButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileDetails.this, EditProfile.class));
+            }
+        });
 
-//        editP.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                //startActivity(new Intent(ProfileDetails.this, ProfileDetails.class));
-//            }
-//        });
-//
-//        logBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                SharedPreferences sharedPreferences = ProfileDetails.this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-//                sharedPreferences.edit().clear().commit();
-//                startActivity(new Intent(ProfileDetails.this, LoginPage.class));
-//                finish();
-//            }
-//        });
+        appCompatImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        logBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences sharedPreferences = ProfileDetails.this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+                sharedPreferences.edit().clear().commit();
+                startActivity(new Intent(ProfileDetails.this, LoginPage.class));
+                finish();
+            }
+        });
 
     }
 }
