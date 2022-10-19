@@ -2,13 +2,13 @@ package com.example.miniproject.Model;
 
 public class UserModel {
 
-    private String userImage, userName, userEmail, userYear, userDepartment, userJob, userType, Description, userBImage;
+    private String userImage, userName, userEmail, userYear, userDepartment, userJob, userType, userDescription, userBImage, userColor, userID;
 
     public UserModel(){
 
     }
 
-    public UserModel(String userImage, String userName, String userEmail, String userYear, String userDepartment, String userJob, String userType, String description, String userBImage) {
+    public UserModel(String userImage, String userName, String userEmail, String userYear, String userDepartment, String userJob, String userType, String userDescription, String userBImage, String userColor, String userID) {
         this.userImage = userImage;
         this.userName = userName;
         this.userEmail = userEmail;
@@ -16,8 +16,10 @@ public class UserModel {
         this.userDepartment = userDepartment;
         this.userJob = userJob;
         this.userType = userType;
-        Description = description;
+        this.userDescription = userDescription;
         this.userBImage = userBImage;
+        this.userColor = userColor;
+        this.userID = userID;
     }
 
     public String getUserImage() {
@@ -76,12 +78,12 @@ public class UserModel {
         this.userType = userType;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getUserDescription() {
+        return userDescription;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public void setUserDescription(String userDescription) {
+        this.userDescription = userDescription;
     }
 
     public String getUserBImage() {
@@ -90,5 +92,21 @@ public class UserModel {
 
     public void setUserBImage(String userBImage) {
         this.userBImage = userBImage;
+    }
+
+    public String getUserColor() {
+        return userColor;
+    }
+
+    public void setUserColor(String userColor) {
+        this.userColor = userColor;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 }

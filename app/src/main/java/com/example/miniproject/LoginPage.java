@@ -25,6 +25,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText loginEmail, loginPassword;
     private Button loginButton;
     private FirebaseAuth firebaseAuth;
+    public String email;
     public static final String SHARED_PREFS = "sharedPrefs";
     private ProgressDialog progressDialog;
 
@@ -61,6 +62,7 @@ public class LoginPage extends AppCompatActivity {
     private void loggedIn() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String loggedIn = sharedPreferences.getString("name", "");
+        email = sharedPreferences.getString("email", "");
         if (loggedIn.equals("rue")){
             startActivity(new Intent(getApplicationContext(), Events.class));
             finish();

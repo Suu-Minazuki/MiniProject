@@ -87,8 +87,8 @@ public class ProfileDetails extends AppCompatActivity {
                     if (!Objects.equals(userModel.getUserType(), "")){
                         profileType.setText(userModel.getUserType());
                     }
-                    if (!Objects.equals(userModel.getDescription(), "")){
-                        editText2.setText(userModel.getDescription());
+                    if (!Objects.equals(userModel.getUserDescription(), "")){
+                        editText2.setText(userModel.getUserDescription());
                     }
                     if (!Objects.equals(userModel.getUserDepartment(), "")){
                         userCourse.setText(userModel.getUserDepartment());

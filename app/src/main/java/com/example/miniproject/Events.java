@@ -147,6 +147,7 @@ public class Events extends AppCompatActivity {
                 float_btn_eve.setVisibility(View.GONE);
                 float_btn_not.setVisibility(View.GONE);
                 float_btn_pro.setVisibility(View.GONE);
+                float_btn.setAnimation(btnAnimationMainAfter);
             }
         });
 
@@ -158,6 +159,7 @@ public class Events extends AppCompatActivity {
                 float_btn_eve.setVisibility(View.GONE);
                 float_btn_not.setVisibility(View.GONE);
                 float_btn_pro.setVisibility(View.GONE);
+                float_btn.setAnimation(btnAnimationMainAfter);
             }
         });
 
@@ -169,6 +171,7 @@ public class Events extends AppCompatActivity {
                 float_btn_eve.setVisibility(View.GONE);
                 float_btn_not.setVisibility(View.GONE);
                 float_btn_pro.setVisibility(View.GONE);
+                float_btn.setAnimation(btnAnimationMainAfter);
             }
         });
 

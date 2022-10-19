@@ -48,8 +48,11 @@ public class SignUpForm extends AppCompatActivity {
     private EditText regisName, regisEmail, regisPassword, regisCPass, regisYear, regisJob;
     private String[] regisType = {"User Type", "Alumni", "Student", "Tutor"};
     private String[] regisCourse = {"Programme" ,"BE in IT", "BE in Civil Engineering", "BE in ECE", "BE in ICE", "BE in ECE","BE in Engineering Geology", "B Architecture"};
+    private static String[] colors = {"#ff00ff", "#ff0000", "#0000ff", "#003366", "#800080", "#ffff00", "#00ff00", "#008000", "#990000", "#420420"};
+    private int index;
     private Spinner spinner, spinner1;
     private Button regisButton;
+    private static final String userBImage = "https://firebasestorage.googleapis.com/v0/b/cte306miniproject.appspot.com/o/default-alumni.jpg?alt=media&token=ff9d273e-8b77-451f-b3ca-1ede46811c3f";
     private Uri selectedImageUri;
     private FirebaseAuth firebaseAuth;
     private FirebaseStorage firebaseStorage;
@@ -72,6 +75,9 @@ public class SignUpForm extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         spinner1 = findViewById(R.id.spinner1);
         regisButton = findViewById(R.id.regisButton);
+
+        Random random = new Random();
+        index = random.nextInt(colors.length);
 
         // Code for showing progressDialog while uploading
         progressDialog = new ProgressDialog(this);
@@ -318,7 +324,9 @@ public class SignUpForm extends AppCompatActivity {
                                         regisJob.getText().toString(),
                                         spinner.getSelectedItem().toString(),
                                         "",
-                                        "");
+                                        userBImage,
+                                        colors[index],
+                                        key);
                                 root.child(key).setValue(userModel);
                                 break;
                             case "Student":
@@ -331,7 +339,9 @@ public class SignUpForm extends AppCompatActivity {
                                         "",
                                         spinner.getSelectedItem().toString(),
                                         "",
-                                        "");
+                                        userBImage,
+                                        colors[index],
+                                        key);
                                 root.child(key).setValue(userModel1);
                                 break;
                             case "Tutor":
@@ -344,7 +354,9 @@ public class SignUpForm extends AppCompatActivity {
                                             "Lecturer",
                                             spinner.getSelectedItem().toString(),
                                             "",
-                                            "");
+                                            userBImage,
+                                            colors[index],
+                                            key);
                                     root.child(key).setValue(userModel2);
                                     break;
                         }

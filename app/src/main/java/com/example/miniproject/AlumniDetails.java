@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class AlumniDetails extends AppCompatActivity {
 
-    private ImageView alumniI;
+    private ImageView alumniI, imageView2;
     private TextView alumniN, alumniD, alumniY;
     private AppCompatImageButton appCompatImageButton;
     private AppCompatButton appCompatButton2;
@@ -33,7 +33,9 @@ public class AlumniDetails extends AppCompatActivity {
         alumniY =findViewById(R.id.alumni_graduate_year);
         appCompatImageButton = findViewById(R.id.appCompatImageButton);
         appCompatButton2 = findViewById(R.id.appCompatButton2);
+        imageView2 = findViewById(R.id.imageView2);
 
+        Picasso.get().load(getIntent().getStringExtra("ALUMNI_BIMAGE")).placeholder(R.drawable.ic_baseline_image_24).into(imageView2);
         Picasso.get().load(getIntent().getStringExtra("ALUMNI_IMAGE")).placeholder(R.drawable.ic_baseline_image_24).into(alumniI);
         alumniN.setText(getIntent().getStringExtra("ALUMNI_NAME"));
         alumniD.setText(getIntent().getStringExtra("ALUMNI_DEPARTMENT"));
@@ -49,8 +51,7 @@ public class AlumniDetails extends AppCompatActivity {
         appCompatButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+"testemail@gmail.com")
-                );
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+getIntent().getStringExtra("ALUMNI_EMAIL")));
                 startActivity(intent);
             }
         });

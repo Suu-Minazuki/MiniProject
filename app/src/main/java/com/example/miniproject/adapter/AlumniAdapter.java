@@ -2,6 +2,7 @@ package com.example.miniproject.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,11 +47,13 @@ public class AlumniAdapter extends RecyclerView.Adapter<AlumniAdapter.myViewHold
         holder.alumniN.setText(userModel.getUserName());
         holder.alumniD.setText(userModel.getUserDepartment());
         holder.alumniY.setText(userModel.getUserYear() + "");
+        holder.firstView.setBackgroundColor(Color.parseColor(userModel.getUserColor()));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, com.example.miniproject.AlumniDetails.class);
+                intent.putExtra("ALUMNI_BIMAGE", userModel.getUserBImage());
                 intent.putExtra("ALUMNI_IMAGE", userModel.getUserImage());
                 intent.putExtra("ALUMNI_EMAIL", userModel.getUserEmail());
                 intent.putExtra("ALUMNI_NAME", userModel.getUserName());
@@ -74,16 +77,18 @@ public class AlumniAdapter extends RecyclerView.Adapter<AlumniAdapter.myViewHold
         CardView cardView;
         TextView alumniN, alumniD, alumniY;
         ImageView alumniI;
+        View firstView;
+        View root;
 
         public myViewHolder(@NonNull View itemView) {
             super(itemView);
 
             cardView = itemView.findViewById(R.id.alumniClicked);
-
             alumniN = itemView.findViewById(R.id.alumni_name);
             alumniD = itemView.findViewById(R.id.alumni_department);
             alumniY = itemView.findViewById(R.id.alumni_batch);
             alumniI = itemView.findViewById(R.id.alumni_cardview_photo);
+            firstView = itemView.findViewById(R.id.first_view);
 
         }
     }

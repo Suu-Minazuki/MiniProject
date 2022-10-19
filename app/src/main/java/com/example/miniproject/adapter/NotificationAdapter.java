@@ -38,8 +38,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull myViewHolder holder, int position) {
         EventWithData eventDataModel = list.get(position);
         Picasso.get().load(eventDataModel.getOrg_Image()).placeholder(R.drawable.ic_baseline_image_24).into(holder.notImage);
-        holder.notOrg.setText(eventDataModel.getOrg_name());
-        holder.notEvent.setText(eventDataModel.getEvent_name());
+        holder.notOrg.setText(eventDataModel.getOrg_name() + " has organized " + eventDataModel.getEvent_name() + " on "+ eventDataModel.getEvent_day() + ":" + eventDataModel.getEvent_month() + ":" + eventDataModel.getEvent_Year());
+        holder.notEvent.setText(eventDataModel.getEvent_add());
 
     }
 

@@ -16,13 +16,15 @@ public class EventWithData {
     private String org_name;
     private String org_dept;
     private String org_type;
+    private String org_email;
     private String event_time;
+    private String event_ID;
 
     public EventWithData() {
 
     }
 
-    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_day, String event_month, String event_Year, String event_add, String org_Image, String org_name, String org_dept, String org_type, String event_time) {
+    public EventWithData(String event_name, String event_description, String event_venue, String event_image, String event_day, String event_month, String event_Year, String event_add, String org_Image, String org_name, String org_dept, String org_type, String org_email, String event_time, String event_ID) {
         this.event_name = event_name;
         this.event_description = event_description;
         this.event_venue = event_venue;
@@ -35,7 +37,9 @@ public class EventWithData {
         this.org_name = org_name;
         this.org_dept = org_dept;
         this.org_type = org_type;
+        this.org_email = org_email;
         this.event_time = event_time;
+        this.event_ID = event_ID;
     }
 
     public String getEvent_name() {
@@ -134,11 +138,27 @@ public class EventWithData {
         this.org_type = org_type;
     }
 
+    public String getOrg_email() {
+        return org_email;
+    }
+
+    public void setOrg_email(String org_email) {
+        this.org_email = org_email;
+    }
+
     public String getEvent_time() {
         return event_time;
     }
 
     public void setEvent_time(String event_time) {
         this.event_time = event_time;
+    }
+
+    public String getEvent_ID() {
+        return event_ID;
+    }
+
+    public void setEvent_ID(String event_ID) {
+        this.event_ID = event_ID;
     }
 }

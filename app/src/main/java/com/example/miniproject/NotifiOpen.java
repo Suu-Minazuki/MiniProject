@@ -2,11 +2,13 @@ package com.example.miniproject;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 public class NotifiOpen extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private AppCompatImageButton appCompatImageButton;
     private DatabaseReference database;
     private NotificationAdapter notificationAdapter;
     private ArrayList<EventWithData> list;
@@ -34,6 +37,7 @@ public class NotifiOpen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notifi_open);
 
+        appCompatImageButton = findViewById(R.id.appCompatImageButton);
         swipeRefreshLayout = findViewById(R.id.pullToRefresh);
         database = FirebaseDatabase.getInstance().getReference("Events");
         recyclerView = findViewById(R.id.recycler_view);
@@ -42,6 +46,13 @@ public class NotifiOpen extends AppCompatActivity {
         list = new ArrayList<>();
         notificationAdapter = new NotificationAdapter(this, list);
         recyclerView.setAdapter(notificationAdapter);
+
+        appCompatImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
@@ -27,9 +28,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
 
+import com.example.miniproject.Model.EventWithData;
 import com.example.miniproject.Model.UserModel;
+import com.google.android.gms.common.util.ArrayUtils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,7 +47,9 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 
@@ -60,8 +66,9 @@ public class EditProfile extends AppCompatActivity {
     private AppCompatButton save;
     private FirebaseStorage storage;
     private StorageReference uploader;
-    private String email;
-    private String url1, url2;
+    public String eMail;
+    private String userID, userDepartment;
+    private String userImageUrl, userBImageUrl;
     private String[] regisCourse = {"BE in IT", "BE in Civil Engineering", "BE in ECE", "BE in ICE", "BE in ECE","BE in Engineering Geology", "B Architecture"};
     private ProgressDialog progressDialog;
     public static final String SHARED_PREFS = "sharedPrefs";
@@ -82,13 +89,11 @@ public class EditProfile extends AppCompatActivity {
         save = findViewById(R.id.save);
         appCompatImageButton = findViewById(R.id.appCompatImageButton);
         progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Updating");
 
-        ArrayAdapter aa = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, regisCourse);
-        aa.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
-        alumni_dept.setAdapter(aa);
 
         SharedPreferences sharedPreferences = this.getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
-        String eMail = sharedPreferences.getString("email", "");
+        eMail = sharedPreferences.getString("email", "");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("User");
         Query query = databaseReference.orderByChild("userEmail").equalTo(eMail);
@@ -98,6 +103,8 @@ public class EditProfile extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     UserModel userModel = dataSnapshot.getValue(UserModel.class);
                     assert userModel != null;
+                    userImageUrl = userModel.getUserImage();
+                    userBImageUrl = userModel.getUserBImage();
                     //user profile image
                     if (!Objects.equals(userModel.getUserImage(), "")){
                         Picasso.get().load(userModel.getUserImage()).placeholder(R.drawable.ic_launcher_background).into(alumni_image);
@@ -110,8 +117,8 @@ public class EditProfile extends AppCompatActivity {
                     if (!Objects.equals(userModel.getUserName(), "")){
                         alumni_name.setText(userModel.getUserName());
                     }
-                    if (!Objects.equals(userModel.getDescription(), "")){
-                        editText2.setText(userModel.getDescription());
+                    if (!Objects.equals(userModel.getUserDescription(), "")){
+                        editText2.setText(userModel.getUserDescription());
                     }
                     if (!Objects.equals(userModel.getUserJob(), "")){
                         user_job.setText(userModel.getUserJob());
@@ -119,6 +126,8 @@ public class EditProfile extends AppCompatActivity {
                     if (!Objects.equals(userModel.getUserYear(), "")){
                         alumni_graduate_year.setText(userModel.getUserYear());
                     }
+                    userDepartment = userModel.getUserDepartment();
+                    userID = userModel.getUserID();
                 }
             }
 
@@ -128,6 +137,16 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+
+        ArrayAdapter aa = new ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, regisCourse);
+        aa.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+        alumni_dept.setAdapter(aa);
+        alumni_dept.post(new Runnable() {
+            @Override
+            public void run() {
+                alumni_dept.setSelection(Arrays.asList(regisCourse).indexOf(userDepartment));
+            }
+        });
 
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,6 +165,7 @@ public class EditProfile extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (selectedImageUri == null){
                     if (selectedImageUri1 == null){
                         uploadtofirebase3();
@@ -223,10 +243,8 @@ public class EditProfile extends AppCompatActivity {
     private void uploadtofirebase() {
         storage = FirebaseStorage.getInstance();
         uploader = storage.getReference("UserImage1"+new Random().nextInt(50));
-
         // Code for showing progressDialog while uploading
         progressDialog.show();
-
         // adding listeners on upload
         // or failure of image
         uploader.putFile(selectedImageUri)
@@ -237,15 +255,34 @@ public class EditProfile extends AppCompatActivity {
                         uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-
-
-
-                                // Image uploaded successfully
-                                url1 = uri.toString();
-                                if (selectedImageUri1 == null){
-                                    uploadtofirebase3();
-                                }else{
-                                    uploadtofirebase2();
+                                if (!Objects.equals(userBImageUrl, "https://firebasestorage.googleapis.com/v0/b/cte306miniproject.appspot.com/o/default-alumni.jpg?alt=media&token=ff9d273e-8b77-451f-b3ca-1ede46811c3f")){
+                                    StorageReference photoRef = storage.getReferenceFromUrl(userBImageUrl);
+                                    photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // File deleted successfully
+                                            // Image uploaded successfully
+                                            userBImageUrl = uri.toString();
+                                            if (selectedImageUri1 == null){
+                                                uploadtofirebase3();
+                                            }else{
+                                                uploadtofirebase2();
+                                            }
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception exception) {
+                                            // Uh-oh, an error occurred!
+                                            Log.d("TAG", "onFailure: did not delete file");
+                                        }
+                                    });
+                                }else {
+                                    userBImageUrl = uri.toString();
+                                    if (selectedImageUri1 == null){
+                                        uploadtofirebase3();
+                                    }else{
+                                        uploadtofirebase2();
+                                    }
                                 }
                             }
                         });
@@ -262,15 +299,30 @@ public class EditProfile extends AppCompatActivity {
     }
 
     public void uploadtofirebase2(){
+        progressDialog.show();
+        storage = FirebaseStorage.getInstance();
+        uploader = storage.getReference("UserImage1"+new Random().nextInt(50));
         uploader.putFile(selectedImageUri1).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 uploader.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        progressDialog.dismiss();
-                        url2 = uri.toString();
-                        uploadtofirebase3();
+                        StorageReference photoRef = storage.getReferenceFromUrl(userImageUrl);
+                        photoRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // File deleted successfully
+                                userImageUrl = uri.toString();
+                                uploadtofirebase3();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Uh-oh, an error occurred!
+                                Log.d("TAG", "onFailure: did not delete file");
+                            }
+                        });
                     }
                 });
             }
@@ -287,20 +339,53 @@ public class EditProfile extends AppCompatActivity {
             public void onProgress(UploadTask.TaskSnapshot taskSnapshot)
             {
                 double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                progressDialog.setMessage("Uploaded " + (int)progress + "%");
+                progressDialog.setMessage("Updating ");
             }
         });
     }
     public void uploadtofirebase3(){
+        progressDialog.show();
         FirebaseDatabase  database = FirebaseDatabase.getInstance();
         DatabaseReference mDatabaseRef = database.getReference("User");
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("userBImage").setValue(url1);
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("userImage").setValue(url2);
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("userName").setValue(alumni_name.getText().toString());
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("description").setValue(editText2.getText().toString());
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("userDepartment").setValue(alumni_dept.getSelectedItem().toString());
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("userJob").setValue(user_job.getText().toString());
-        mDatabaseRef.child("-NEX8N_BHzxVav3UFA_-").child("userYear").setValue(alumni_graduate_year.getText().toString());
+        mDatabaseRef.child(userID).child("userBImage").setValue(userBImageUrl);
+        mDatabaseRef.child(userID).child("userImage").setValue(userImageUrl);
+        mDatabaseRef.child(userID).child("userName").setValue(alumni_name.getText().toString());
+        mDatabaseRef.child(userID).child("description").setValue(editText2.getText().toString());
+        mDatabaseRef.child(userID).child("userDepartment").setValue(alumni_dept.getSelectedItem().toString());
+        mDatabaseRef.child(userID).child("userJob").setValue(user_job.getText().toString());
+        mDatabaseRef.child(userID).child("userYear").setValue(alumni_graduate_year.getText().toString());
+
+        DatabaseReference mDatabaseRef1 = database.getReference("Events");
+        Query query = mDatabaseRef1.orderByChild("org_email").equalTo(eMail);
+        query.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                mDatabaseRef1.child(snapshot.getKey()).child("org_Image").setValue(userImageUrl);
+                mDatabaseRef1.child(snapshot.getKey()).child("org_name").setValue(alumni_name.getText().toString());
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        progressDialog.dismiss();
         Toast.makeText(EditProfile.this, "Successful", Toast.LENGTH_SHORT).show();
         finish();
     }

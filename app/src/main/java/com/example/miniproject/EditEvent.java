@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -23,6 +24,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import com.example.miniproject.Model.EventWithData;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -47,15 +49,13 @@ public class EditEvent extends AppCompatActivity {
     private CalendarView calendar_view;
     private TimePicker timePicker;
     private ImageView IVPreviewImage;
+    private AppCompatImageButton appCompatImageButton;
     private String org_name, org_image, org_usertype, org_dept, event_month, event_day, event_year, event_time, event_add;
-    private ImageButton cancel;
     private Button submit_btn;
     private Uri selectedImageUri;
     private FirebaseStorage storage;
     private StorageReference uploader;
-    private FirebaseDatabase firebaseDatabase;
-    private DatabaseReference databaseReference;
-    private String key;
+    private String key, email;
     public static final String SHARED_PREFS = "sharedPrefs";
 
     @Override
@@ -67,10 +67,17 @@ public class EditEvent extends AppCompatActivity {
         ed_description = findViewById(R.id.ed_description);
         ed_venue = findViewById(R.id.ed_Venue);
         IVPreviewImage = findViewById(R.id.add_image);
-        cancel = findViewById(R.id.appCompatImageButton);
         calendar_view = findViewById(R.id.calendarView);
         timePicker = findViewById(R.id.timePicker3);
         submit_btn = findViewById(R.id.ed_submit);
+        appCompatImageButton = findViewById(R.id.appCompatImageButton);
+
+        appCompatImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         //Getting day month and year from user profile
         calendar_view.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -116,6 +123,7 @@ public class EditEvent extends AppCompatActivity {
         org_name = sharedPreferences.getString("Name", "");
         org_dept = sharedPreferences.getString("Department", "");
         org_usertype = sharedPreferences.getString("Type", "");
+        email = sharedPreferences.getString("email", "");
 
 
         IVPreviewImage.setOnClickListener(new View.OnClickListener() {
@@ -129,15 +137,35 @@ public class EditEvent extends AppCompatActivity {
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (TextUtils.isEmpty(ed_name.getText().toString())){
+                    Toast.makeText(EditEvent.this, "Insert Title!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(event_day)){
+                    Toast.makeText(EditEvent.this, "Select a Date", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(event_time)){
+                    Toast.makeText(EditEvent.this, "Select a Time", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(ed_description.getText().toString())){
+                    Toast.makeText(EditEvent.this, "Description is Empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(ed_venue.getText().toString())){
+                    Toast.makeText(EditEvent.this, "Venue is Empty!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 uploadtofirebase();
             }
         });
 
         //Cancel upload
-        cancel.setOnClickListener(new View.OnClickListener() {
+        appCompatImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
 
@@ -170,12 +198,15 @@ public class EditEvent extends AppCompatActivity {
             });
 
     private void uploadtofirebase() {
+        if (TextUtils.isEmpty(selectedImageUri.toString())){
+            Toast.makeText(EditEvent.this, "Please Select and Image!", Toast.LENGTH_SHORT).show();
+            return;
+        }
         storage = FirebaseStorage.getInstance();
         uploader = storage.getReference("Image1"+new Random().nextInt(50));
 
             // Code for showing progressDialog while uploading
             ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
             event_add = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
@@ -198,7 +229,7 @@ public class EditEvent extends AppCompatActivity {
                                             FirebaseDatabase db = FirebaseDatabase.getInstance();
                                             DatabaseReference root=db.getReference("Events");
                                             key = root.push().getKey();
-
+                                            LoginPage loginPage = new LoginPage();
                                             EventWithData eventWithData  = new EventWithData(
                                                     ed_name.getText().toString(),
                                                     ed_description.getText().toString(),
@@ -212,11 +243,14 @@ public class EditEvent extends AppCompatActivity {
                                                     org_name,
                                                     org_dept,
                                                     org_usertype,
-                                                    event_time
+                                                    email,
+                                                    event_time,
+                                                    key
                                             );
                                             root.child(key).setValue(eventWithData);
 
                                             Toast.makeText(EditEvent.this, "Successful", Toast.LENGTH_SHORT).show();
+                                            finish();
                                         }
                                     });
                                 }
@@ -239,7 +273,7 @@ public class EditEvent extends AppCompatActivity {
                                 public void onProgress(UploadTask.TaskSnapshot taskSnapshot)
                                 {
                                     double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                                    progressDialog.setMessage("Uploaded " + (int)progress + "%");
+                                    progressDialog.setMessage("Creating " + (int)progress + "%");
                                 }
                             });
         }
